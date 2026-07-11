@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2: Career - Từ vựng THPTQG | Cô Quỳnh Nhi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 20px 16px 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            border: 1px solid rgba(255, 215, 120, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 120, 0.3);
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: #f1f5f9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+        }
+
+        .home-btn:hover {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            transform: scale(0.97);
+        }
+
+        .home-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .header-title {
+            color: #f1f5f9;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .header-title span {
+            color: #fcd34d;
+        }
+
+        .header-badge {
+            background: #fbbf24;
+            color: #0f172a;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        /* ===== MAIN TABS ===== */
+        .main-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .main-tab-btn {
+            padding: 14px 32px;
+            border: 2px solid rgba(255, 215, 120, 0.2);
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-tab-btn:hover {
+            color: #e2e8f0;
+            border-color: rgba(255, 215, 120, 0.4);
+        }
+
+        .main-tab-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.25);
+        }
+
+        .main-tab-btn .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        .main-tab-btn.active .badge-count {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .main-tab-content {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+
+        .main-tab-content.active-main {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== SUB TABS ===== */
+        .sub-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .sub-tab-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sub-tab-btn:hover {
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sub-tab-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2);
+        }
+
+        .sub-tab-btn .icon {
+            font-size: 1.1rem;
+        }
+
+        .sub-tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .sub-tab-content.active-sub {
+            display: block;
+        }
+
+        /* ===== VOCAB CARD ===== */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                border-radius: 28px;
+                padding: 12px 16px;
+            }
+            .main-tab-btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+            .sub-tab-btn {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+        }
+
+        .vocab-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px 22px 22px;
+            box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border-left: 5px solid #fbbf24;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .vocab-card .word-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .vocab-card .word {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .vocab-card .level {
+            font-size: 0.6rem;
+            background: #f1f5f9;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: 0.5px;
+        }
+
+        .vocab-card .ipa {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .vocab-card .meaning {
+            color: #1e293b;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 8px;
+            padding: 8px 14px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .vocab-card .example {
+            color: #475569;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            border-left: 3px solid #94a3b8;
+            line-height: 1.5;
+        }
+
+        .vocab-card .example::before {
+            content: "📌 ";
+            font-style: normal;
+        }
+
+        .vocab-card .collocations {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fef3c7;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #92400e;
+            line-height: 1.6;
+        }
+
+        .vocab-card .collocations::before {
+            content: "🔗 Collocations: ";
+            font-weight: 700;
+        }
+
+        .vocab-card .word-family {
+            margin-top: 8px;
+            padding: 10px 14px;
+            background: #e0f2fe;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            color: #0369a1;
+            line-height: 1.7;
+        }
+
+        .vocab-card .word-family::before {
+            content: "📚 Word family: ";
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .vocab-card .word-family .wf-item {
+            display: block;
+            padding: 2px 0;
+        }
+
+        .vocab-card .word-family .wf-item .wf-word {
+            font-weight: 600;
+            color: #0c4a6e;
+        }
+
+        .vocab-card .word-family .wf-item .wf-example {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .vocab-card .pos-tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pos-tag.noun { background: #dbeafe; color: #1d4ed8; }
+        .pos-tag.verb { background: #d1fae5; color: #059669; }
+        .pos-tag.adj { background: #fce7f3; color: #be185d; }
+
+        .empty-msg {
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .text-center { text-align: center; }
+        .mt-20 { margin-top: 20px; }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../index.html" class="home-btn">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Trang chủ
+            </a>
+            <div class="header-title">
+                💼 Unit 2: <span>Career</span>
+            </div>
+        </div>
+        <div class="header-badge">
+            🎯 65 từ vựng B1–C2
+        </div>
+    </header>
+
+    <!-- ===== MAIN TABS ===== -->
+    <div class="main-tabs">
+        <button class="main-tab-btn active" data-main="main-test1">
+            📘 TEST 01 <span class="badge-count">25 từ</span>
+        </button>
+        <button class="main-tab-btn" data-main="main-test2">
+            📗 TEST 02 <span class="badge-count">40 từ</span>
+        </button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 01 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test1" class="main-tab-content active-main">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test1-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">10</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">10</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">5</span>
+            </button>
+        </div>
+
+        <div id="test1-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test1NounGrid"></div></div>
+        <div id="test1-verbs" class="sub-tab-content"><div class="vocab-grid" id="test1VerbGrid"></div></div>
+        <div id="test1-adj" class="sub-tab-content"><div class="vocab-grid" id="test1AdjGrid"></div></div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 02 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test2" class="main-tab-content">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test2-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">15</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">11</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">14</span>
+            </button>
+        </div>
+
+        <div id="test2-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test2NounGrid"></div></div>
+        <div id="test2-verbs" class="sub-tab-content"><div class="vocab-grid" id="test2VerbGrid"></div></div>
+        <div id="test2-adj" class="sub-tab-content"><div class="vocab-grid" id="test2AdjGrid"></div></div>
+    </div>
+
+    <footer>
+        Hệ thống từ vựng chuyên sâu luyện thi THPTQG | Lớp Tiếng Anh cô Nhi<br>
+    </footer>
+</div>
+
+<script>
+    // ================================================================
+    //  DATA: UNIT 2: CAREER - TEST 01 & TEST 02
+    // ================================================================
+    const vocabularyData = [
+        // ===================== TEST 01 =====================
+        // ---- NOUNS ----
+        { word: "ability", ipa: "/əˈbɪləti/", meaning: "khả năng, năng lực", level: "B1", pos: "noun", test: "test1",
+          example: "The ability to adapt to new situations is essential for success.",
+          collocations: "ability to do something (khả năng làm gì), cognitive ability (khả năng nhận thức), demonstrate ability (thể hiện khả năng)",
+          wordFamily: "able (adj): She is able to complete the task. (Cô ấy có thể hoàn thành nhiệm vụ.)<br>enable (v): The scholarship enabled her to study abroad. (Học bổng đã giúp cô ấy đi du học.)" },
+
+        { word: "academic", ipa: "/ˌækəˈdemɪk/", meaning: "thuộc về học thuật, giáo dục", level: "B1", pos: "adj", test: "test1",
+          example: "The university offers a wide range of academic programs.",
+          collocations: "academic achievement (thành tích học tập), academic year (năm học), academic background (nền tảng học vấn)",
+          wordFamily: "academy (n): He studied at a military academy. (Anh ấy học tại một học viện quân sự.)<br>academically (adv): She is academically gifted. (Cô ấy có năng khiếu học thuật.)" },
+
+        { word: "acceptance", ipa: "/əkˈseptəns/", meaning: "sự chấp nhận", level: "B2", pos: "noun", test: "test1",
+          example: "Now that you have shown your acceptance of our offer, I will prepare the contract.",
+          collocations: "acceptance of an offer (chấp nhận đề nghị), acceptance letter (thư chấp nhận), gain acceptance (được chấp nhận)",
+          wordFamily: "accept (v): I accept your terms. (Tôi chấp nhận các điều khoản của bạn.)<br>acceptable (adj): The price is acceptable. (Giá cả có thể chấp nhận được.)<br>accepted (adj): It is widely accepted. (Nó được chấp nhận rộng rãi.)" },
+
+        { word: "accessible", ipa: "/əkˈsesəbl/", meaning: "có thể tiếp cận, dễ tiếp cận", level: "B2", pos: "adj", test: "test1",
+          example: "The building is accessible to people with disabilities.",
+          collocations: "easily accessible (dễ dàng tiếp cận), accessible to the public (có thể tiếp cận công chúng)",
+          wordFamily: "access (n/v): Everyone should have access to education. (Mọi người nên có quyền tiếp cận giáo dục.)<br>accessibility (n): The accessibility of information is important. (Khả năng tiếp cận thông tin là quan trọng.)" },
+
+        { word: "actively", ipa: "/ˈæktɪvli/", meaning: "một cách tích cực, chủ động", level: "B1", pos: "adv", test: "test1",
+          example: "She actively participates in community projects.",
+          collocations: "actively participate (tham gia tích cực), actively involved (tích cực tham gia)",
+          wordFamily: "active (adj): She leads an active lifestyle. (Cô ấy có lối sống năng động.)<br>activity (n): Physical activity is good for health. (Hoạt động thể chất tốt cho sức khỏe.)<br>activate (v): You need to activate your account. (Bạn cần kích hoạt tài khoản của mình.)" },
+
+        { word: "affect", ipa: "/əˈfekt/", meaning: "ảnh hưởng, tác động", level: "B1", pos: "verb", test: "test1",
+          example: "The new policy will affect all employees.",
+          collocations: "significantly affect (ảnh hưởng đáng kể), directly affect (ảnh hưởng trực tiếp)",
+          wordFamily: "effect (n): The effect of the policy was positive. (Tác động của chính sách là tích cực.)<br>effective (adj): This is an effective solution. (Đây là một giải pháp hiệu quả.)<br>affection (n): She has a deep affection for her family. (Cô ấy có tình cảm sâu sắc với gia đình.)" },
+
+        { word: "apply", ipa: "/əˈplaɪ/", meaning: "áp dụng, nộp đơn xin", level: "A2/B1", pos: "verb", test: "test1",
+          example: "You should apply for the job before the deadline.",
+          collocations: "apply for a job (nộp đơn xin việc), apply knowledge (áp dụng kiến thức), apply to a university (nộp đơn vào đại học)",
+          wordFamily: "application (n): Please fill out the application form. (Vui lòng điền vào mẫu đơn.)<br>applicant (n): There were many applicants for the position. (Có nhiều ứng viên cho vị trí này.)<br>applicable (adj): The rule is applicable to everyone. (Quy tắc áp dụng cho tất cả mọi người.)" },
+
+        { word: "appreciate", ipa: "/əˈpriːʃieɪt/", meaning: "đánh giá cao, trân trọng", level: "B1", pos: "verb", test: "test1",
+          example: "I really appreciate your help with this project.",
+          collocations: "highly appreciate (đánh giá cao), appreciate the effort (trân trọng nỗ lực)",
+          wordFamily: "appreciation (n): I have great appreciation for your work. (Tôi đánh giá cao công việc của bạn.)<br>appreciative (adj): She was appreciative of his support. (Cô ấy biết ơn sự hỗ trợ của anh ấy.)" },
+
+        { word: "assess", ipa: "/əˈses/", meaning: "đánh giá, thẩm định", level: "B1", pos: "verb", test: "test1",
+          example: "Teachers assess students' progress through regular tests.",
+          collocations: "assess the situation (đánh giá tình hình), assess performance (đánh giá hiệu suất), critically assess (đánh giá một cách phê phán)",
+          wordFamily: "assessment (n): The assessment of the project was positive. (Đánh giá dự án là tích cực.)<br>assessor (n): He works as an assessor. (Anh ấy làm việc như một người đánh giá.)" },
+
+        { word: "assign", ipa: "/əˈsaɪn/", meaning: "phân công, giao việc", level: "B1", pos: "verb", test: "test1",
+          example: "The manager assigned the task to the new intern.",
+          collocations: "assign a task (giao nhiệm vụ), assign responsibility (giao trách nhiệm)",
+          wordFamily: "assignment (n): The assignment is due next week. (Bài tập đến hạn vào tuần tới.)" },
+
+        { word: "balance", ipa: "/ˈbæləns/", meaning: "sự cân bằng/cân bằng", level: "B1", pos: "noun/verb", test: "test1",
+          example: "It is difficult to balance work and family life.",
+          collocations: "work-life balance (cân bằng công việc-cuộc sống), strike a balance (đạt được sự cân bằng), maintain balance (duy trì sự cân bằng)",
+          wordFamily: "balanced (adj): She has a balanced diet. (Cô ấy có chế độ ăn uống cân bằng.)" },
+
+        { word: "benefit", ipa: "/ˈbenɪfɪt/", meaning: "mang lại lợi ích", level: "B1", pos: "verb", test: "test1",
+          example: "Regular exercise benefits both physical and mental health.",
+          collocations: "benefit from (hưởng lợi từ), greatly benefit (mang lại lợi ích lớn)",
+          wordFamily: "benefit (n): The benefits of exercise are well-known. (Lợi ích của tập thể dục được biết đến rộng rãi.)<br>beneficial (adj): This is beneficial to your health. (Điều này có lợi cho sức khỏe của bạn.)" },
+
+        { word: "boundary", ipa: "/ˈbaʊndri/", meaning: "ranh giới, giới hạn", level: "B1", pos: "noun", test: "test1",
+          example: "Setting clear boundaries is important in any relationship.",
+          collocations: "set boundaries (thiết lập ranh giới), professional boundaries (ranh giới nghề nghiệp), push boundaries (vượt qua giới hạn)",
+          wordFamily: "bound (adj/v): You are bound by the contract. (Bạn bị ràng buộc bởi hợp đồng.)" },
+
+        { word: "career", ipa: "/kəˈrɪə(r)/", meaning: "sự nghiệp, nghề nghiệp", level: "B1", pos: "noun", test: "test1",
+          example: "She has built a successful career in marketing.",
+          collocations: "career path (lộ trình sự nghiệp), career development (phát triển sự nghiệp), career goals (mục tiêu nghề nghiệp)",
+          wordFamily: "careerist (n): He is a careerist who always prioritizes promotion. (Anh ấy là người theo đuổi sự nghiệp, luôn ưu tiên thăng tiến.)" },
+
+        { word: "challenge", ipa: "/ˈtʃælɪndʒ/", meaning: "thử thách, thách thức", level: "B1", pos: "noun/verb", test: "test1",
+          example: "Learning a new language is a big challenge.",
+          collocations: "face a challenge (đối mặt với thử thách), significant challenge (thử thách lớn), challenge the norm (thách thức chuẩn mực)",
+          wordFamily: "challenging (adj): This is a challenging task. (Đây là một nhiệm vụ đầy thách thức.)" },
+
+        { word: "clarify", ipa: "/ˈklærɪfaɪ/", meaning: "làm rõ, giải thích rõ", level: "B1", pos: "verb", test: "test1",
+          example: "Could you please clarify your point?",
+          collocations: "clarify the situation (làm rõ tình hình), clarify the meaning (làm rõ nghĩa)",
+          wordFamily: "clarification (n): I need clarification on this issue. (Tôi cần sự làm rõ về vấn đề này.)<br>clear (adj): The instructions are clear. (Hướng dẫn rõ ràng.)" },
+
+        { word: "comprehension", ipa: "/ˌkɒmprɪˈhenʃən/", meaning: "sự hiểu biết, khả năng hiểu", level: "B2", pos: "noun", test: "test1",
+          example: "The test measures students' reading comprehension.",
+          collocations: "reading comprehension (đọc hiểu), beyond comprehension (vượt ngoài sự hiểu biết)",
+          wordFamily: "comprehend (v): He cannot comprehend why she left. (Anh ấy không thể hiểu tại sao cô ấy rời đi.)<br>comprehensive (adj): This is a comprehensive report. (Đây là một báo cáo toàn diện.)" },
+
+        { word: "concentration", ipa: "/ˌkɒnsənˈtreɪʃən/", meaning: "sự tập trung", level: "B1", pos: "noun", test: "test1",
+          example: "This task requires a lot of concentration.",
+          collocations: "lose concentration (mất tập trung), require concentration (cần sự tập trung)",
+          wordFamily: "concentrate (v): You need to concentrate on your work. (Bạn cần tập trung vào công việc của mình.)" },
+
+        { word: "confidence", ipa: "/ˈkɒnfɪdəns/", meaning: "sự tự tin", level: "B1", pos: "noun", test: "test1",
+          example: "She spoke with great confidence during the interview.",
+          collocations: "lack confidence (thiếu tự tin), gain confidence (lấy lại tự tin), self-confidence (sự tự tin vào bản thân)",
+          wordFamily: "confident (adj): She is confident about her abilities. (Cô ấy tự tin về khả năng của mình.)<br>confidently (adv): She answered confidently. (Cô ấy trả lời một cách tự tin.)" },
+
+        { word: "consistent", ipa: "/kənˈsɪstənt/", meaning: "nhất quán, liên tục", level: "B1", pos: "adj", test: "test1",
+          example: "Consistent effort leads to success.",
+          collocations: "consistent with (phù hợp với), consistent performance (hiệu suất ổn định)",
+          wordFamily: "consistency (n): Consistency is key to success. (Sự nhất quán là chìa khóa cho thành công.)<br>consistently (adv): She consistently performs well. (Cô ấy luôn thể hiện tốt.)" },
+
+        { word: "crucial", ipa: "/ˈkruːʃəl/", meaning: "quan trọng, then chốt", level: "B2", pos: "adj", test: "test1",
+          example: "Communication is crucial in any relationship.",
+          collocations: "play a crucial role (đóng vai trò then chốt), of crucial importance (có tầm quan trọng sống còn), crucial factor (yếu tố quan trọng)",
+          wordFamily: "crucially (adv): This is crucially important. (Điều này cực kỳ quan trọng.)" },
+
+        { word: "demonstration", ipa: "/ˌdemənˈstreɪʃən/", meaning: "sự thể hiện, trình diễn", level: "B1", pos: "noun", test: "test1",
+          example: "The teacher gave a demonstration of the experiment.",
+          collocations: "practical demonstration (trình diễn thực tế), demonstration of skill (thể hiện kỹ năng)",
+          wordFamily: "demonstrate (v): The teacher demonstrated the experiment. (Giáo viên đã trình diễn thí nghiệm.)" },
+
+        { word: "determination", ipa: "/dɪˌtɜːmɪˈneɪʃən/", meaning: "sự quyết tâm", level: "B1", pos: "noun", test: "test1",
+          example: "His determination helped him overcome many obstacles.",
+          collocations: "show determination (thể hiện sự quyết tâm), sheer determination (quyết tâm mạnh mẽ)",
+          wordFamily: "determine (v): She determined to succeed. (Cô ấy quyết tâm thành công.)<br>determined (adj): He is a determined person. (Anh ấy là một người có quyết tâm.)" },
+
+        { word: "domestic", ipa: "/dəˈmestɪk/", meaning: "thuộc về gia đình/nội địa", level: "B1", pos: "adj", test: "test1",
+          example: "Domestic chores take up a lot of her time.",
+          collocations: "domestic violence (bạo lực gia đình), domestic market (thị trường nội địa), domestic duties (công việc gia đình)",
+          wordFamily: "domesticity (n): She enjoys domesticity. (Cô ấy thích cuộc sống gia đình.)" },
+
+        { word: "dynamic", ipa: "/daɪˈnæmɪk/", meaning: "năng động, sôi động", level: "B2", pos: "adj", test: "test1",
+          example: "The company has a dynamic working environment.",
+          collocations: "dynamic leader (nhà lãnh đạo năng động), dynamic change (thay đổi năng động), team dynamics (động lực nhóm)",
+          wordFamily: "dynamically (adv): The market is changing dynamically. (Thị trường đang thay đổi một cách năng động.)" },
+
+        { word: "enable", ipa: "/ɪˈneɪbl/", meaning: "làm cho có thể, cho phép", level: "B1", pos: "verb", test: "test1",
+          example: "The new software enables faster data processing.",
+          collocations: "enable someone to do something (giúp ai đó làm gì)",
+          wordFamily: "ability (n): She has the ability to succeed. (Cô ấy có khả năng thành công.)<br>able (adj): She is able to do it. (Cô ấy có thể làm điều đó.)" },
+
+        { word: "enhance", ipa: "/ɪnˈhɑːns/", meaning: "nâng cao, tăng cường", level: "B1", pos: "verb", test: "test1",
+          example: "Regular exercise enhances overall well-being.",
+          collocations: "enhance performance (nâng cao hiệu suất), enhance skills (nâng cao kỹ năng), greatly enhance (tăng cường đáng kể)",
+          wordFamily: "enhancement (n): The enhancement of skills is important. (Việc nâng cao kỹ năng là rất quan trọng.)" },
+
+        { word: "understanding", ipa: "/ˌʌndəˈstændɪŋ/", meaning: "sự hiểu biết", level: "A2/B1", pos: "noun", test: "test1",
+          example: "She has a good understanding of the subject.",
+          collocations: "have an understanding (có sự hiểu biết), gain understanding (có được sự hiểu biết), mutual understanding (sự hiểu biết lẫn nhau)",
+          wordFamily: "understand (v): I understand the problem. (Tôi hiểu vấn đề.)<br>understandable (adj): His reaction is understandable. (Phản ứng của anh ấy có thể hiểu được.)" },
+
+        // ===================== TEST 02 =====================
+        // ---- NOUNS ----
+        { word: "adaptability", ipa: "/əˌdæptəˈbɪləti/", meaning: "khả năng thích nghi", level: "B2", pos: "noun", test: "test2",
+          example: "Adaptability is a highly valued skill in today's job market.",
+          collocations: "demonstrate adaptability (thể hiện khả năng thích nghi), require adaptability (yêu cầu khả năng thích nghi), high adaptability (khả năng thích nghi cao)",
+          wordFamily: "adapt (v): She adapted quickly to the new environment. (Cô ấy thích nghi nhanh chóng với môi trường mới.)<br>adaptable (adj): He is an adaptable person. (Anh ấy là một người có khả năng thích nghi.)" },
+
+        { word: "admirable", ipa: "/ˈædmərəbl/", meaning: "đáng ngưỡng mộ, đáng khâm phục", level: "B2", pos: "adj", test: "test2",
+          example: "Her dedication to her work is truly admirable.",
+          collocations: "admirable quality (phẩm chất đáng ngưỡng mộ), admirable effort (nỗ lực đáng khâm phục)",
+          wordFamily: "admire (v): I admire her courage. (Tôi ngưỡng mộ lòng dũng cảm của cô ấy.)<br>admiration (n): She has earned the admiration of her colleagues. (Cô ấy đã nhận được sự ngưỡng mộ của đồng nghiệp.)" },
+
+        { word: "algorithm", ipa: "/ˈælɡərɪðəm/", meaning: "thuật toán", level: "C1", pos: "noun", test: "test2",
+          example: "Social media algorithms determine what content users see.",
+          collocations: "changing algorithm (thuật toán thay đổi), search algorithm (thuật toán tìm kiếm), complex algorithm (thuật toán phức tạp)",
+          wordFamily: "" },
+
+        { word: "analytical", ipa: "/ˌænəˈlɪtɪkl/", meaning: "thuộc về phân tích", level: "B2", pos: "adj", test: "test2",
+          example: "The job requires strong analytical skills.",
+          collocations: "analytical thinking (tư duy phân tích), analytical skills (kỹ năng phân tích)",
+          wordFamily: "analyse/analyze (v): We need to analyze the data. (Chúng ta cần phân tích dữ liệu.)<br>analysis (n): This is a detailed analysis. (Đây là một phân tích chi tiết.)<br>analyst (n): She works as a data analyst. (Cô ấy làm việc như một nhà phân tích dữ liệu.)" },
+
+        { word: "avenue", ipa: "/ˈævənjuː/", meaning: "con đường, lối đi", level: "B1", pos: "noun", test: "test2",
+          example: "The company is exploring new avenues for growth.",
+          collocations: "explore avenues (khám phá các con đường), career avenue (con đường sự nghiệp), new avenues (những con đường mới)",
+          wordFamily: "" },
+
+        { word: "awareness", ipa: "/əˈweənəs/", meaning: "nhận thức, sự hiểu biết", level: "B1", pos: "noun", test: "test2",
+          example: "We need to raise awareness about mental health issues.",
+          collocations: "raise awareness (nâng cao nhận thức), public awareness (nhận thức cộng đồng), self-awareness (tự nhận thức)",
+          wordFamily: "aware (adj): I am aware of the problem. (Tôi nhận thức được vấn đề.)<br>unaware (adj): She was unaware of the situation. (Cô ấy không nhận thức được tình hình.)" },
+
+        { word: "burnout", ipa: "/ˈbɜːnaʊt/", meaning: "kiệt sức (do làm việc quá sức)", level: "C1", pos: "noun", test: "test2",
+          example: "Long working hours can lead to burnout.",
+          collocations: "suffer from burnout (bị kiệt sức), job burnout (kiệt sức công việc), prevent burnout (ngăn ngừa kiệt sức)",
+          wordFamily: "" },
+
+        { word: "competency", ipa: "/ˈkɒmpɪtənsi/", meaning: "năng lực, năng lực chuyên môn", level: "B2", pos: "noun", test: "test2",
+          example: "The course aims to develop students' professional competencies.",
+          collocations: "core competency (năng lực cốt lõi), professional competency (năng lực chuyên môn), demonstrate competency (thể hiện năng lực)",
+          wordFamily: "competent (adj): She is a competent manager. (Cô ấy là một người quản lý có năng lực.)<br>competence (n): His competence is unquestionable. (Năng lực của anh ấy là không thể nghi ngờ.)" },
+
+        { word: "convey", ipa: "/kənˈveɪ/", meaning: "truyền đạt, chuyển tải", level: "B1", pos: "verb", test: "test2",
+          example: "Teachers need to convey information effectively to students.",
+          collocations: "convey information (truyền đạt thông tin), convey a message (truyền tải thông điệp), convey meaning (truyền tải ý nghĩa)",
+          wordFamily: "conveyance (n): The conveyance of information is essential. (Việc truyền đạt thông tin là rất quan trọng.)" },
+
+        { word: "creator", ipa: "/kriˈeɪtər/", meaning: "người sáng tạo, nhà sáng tạo", level: "B1", pos: "noun", test: "test2",
+          example: "Many content creators earn money through social media platforms.",
+          collocations: "content creator (người sáng tạo nội dung), digital creator (nhà sáng tạo kỹ thuật số), successful creator (nhà sáng tạo thành công)",
+          wordFamily: "create (v): She creates beautiful artwork. (Cô ấy tạo ra tác phẩm nghệ thuật đẹp.)<br>creation (n): This is a new creation. (Đây là một tác phẩm mới.)<br>creative (adj): She has a creative mind. (Cô ấy có một tư duy sáng tạo.)" },
+
+        { word: "criticism", ipa: "/ˈkrɪtɪsɪzəm/", meaning: "sự chỉ trích, phê phán", level: "B1", pos: "noun", test: "test2",
+          example: "Public figures often face harsh criticism.",
+          collocations: "face criticism (đối mặt với chỉ trích), constructive criticism (phê bình mang tính xây dựng), sharp criticism (chỉ trích gay gắt)",
+          wordFamily: "critic (n): He is a film critic. (Anh ấy là một nhà phê bình phim.)<br>critical (adj): She is critical of the new policy. (Cô ấy chỉ trích chính sách mới.)<br>criticize (v): He criticized the government's decision. (Anh ấy đã chỉ trích quyết định của chính phủ.)" },
+
+        { word: "cultivate", ipa: "/ˈkʌltɪveɪt/", meaning: "vun đắp, trau dồi, phát triển", level: "C1", pos: "verb", test: "test2",
+          example: "It is important to cultivate good working relationships.",
+          collocations: "cultivate skills (trau dồi kỹ năng), cultivate relationships (vun đắp mối quan hệ), cultivate an image (xây dựng hình ảnh)",
+          wordFamily: "cultivation (n): The cultivation of skills takes time. (Việc trau dồi kỹ năng cần thời gian.)" },
+
+        { word: "direct", ipa: "/dəˈrekt/", meaning: "trực tiếp", level: "B1", pos: "adj/adv/verb", test: "test2",
+          example: "She has direct experience in the field.",
+          collocations: "direct experience (kinh nghiệm trực tiếp), direct impact (tác động trực tiếp), directly related (liên quan trực tiếp)",
+          wordFamily: "directly (adv): The issue directly affects us. (Vấn đề ảnh hưởng trực tiếp đến chúng tôi.)<br>direction (n): We need to decide on the direction of the project. (Chúng ta cần quyết định hướng đi của dự án.)" },
+
+        { word: "embark (on)", ipa: "/ɪmˈbɑːk/", meaning: "bắt tay vào", level: "B2", pos: "verb", test: "test2",
+          example: "She decided to embark on a new career path.",
+          collocations: "embark on a career (bắt đầu sự nghiệp), embark on a journey (bắt đầu hành trình), embark on a project (bắt tay vào dự án)",
+          wordFamily: "" },
+
+        { word: "enabler", ipa: "/ɪˈneɪblər/", meaning: "yếu tố tạo điều kiện", level: "C1", pos: "noun", test: "test2",
+          example: "Technology is a key enabler of remote work.",
+          collocations: "key enabler (yếu tố tạo điều kiện chính), critical enabler (yếu tố quan trọng)",
+          wordFamily: "enable (v): Technology enables us to work remotely. (Công nghệ cho phép chúng tôi làm việc từ xa.)<br>enabled (adj): The system is enabled. (Hệ thống được kích hoạt.)" },
+
+        { word: "entrepreneurial", ipa: "/ˌɒntrəprəˈnɜːriəl/", meaning: "thuộc về khởi nghiệp", level: "B2", pos: "adj", test: "test2",
+          example: "She has strong entrepreneurial skills.",
+          collocations: "entrepreneurial spirit (tinh thần khởi nghiệp), entrepreneurial venture (dự án khởi nghiệp), entrepreneurial mindset (tư duy khởi nghiệp)",
+          wordFamily: "entrepreneur (n): He is a successful entrepreneur. (Anh ấy là một doanh nhân thành công.)<br>entrepreneurship (n): The university promotes entrepreneurship. (Trường đại học khuyến khích tinh thần khởi nghiệp.)" },
+
+        { word: "evolve", ipa: "/ɪˈvɒlv/", meaning: "tiến hóa, phát triển dần", level: "B1", pos: "verb", test: "test2",
+          example: "The company's strategy has evolved over time.",
+          collocations: "evolve over time (phát triển theo thời gian), evolve from (phát triển từ)",
+          wordFamily: "evolution (n): The evolution of technology is rapid. (Sự tiến hóa của công nghệ rất nhanh.)<br>evolutionary (adj): This is an evolutionary process. (Đây là một quá trình tiến hóa.)" },
+
+        { word: "exposure", ipa: "/ɪkˈspəʊʒər/", meaning: "sự tiếp xúc, phơi bày", level: "B1", pos: "noun", test: "test2",
+          example: "Public exposure can be challenging for young influencers.",
+          collocations: "public exposure (sự phơi bày công khai), media exposure (sự xuất hiện trên truyền thông), exposure to (sự tiếp xúc với)",
+          wordFamily: "expose (v): The report exposed the truth. (Báo cáo đã phơi bày sự thật.)" },
+
+        { word: "freelance", ipa: "/ˈfriːlɑːns/", meaning: "tự do, làm việc tự do", level: "B1", pos: "adj/adv", test: "test2",
+          example: "She works as a freelance writer.",
+          collocations: "freelance work (công việc tự do), freelance journalist (phóng viên tự do), freelance platform (nền tảng làm việc tự do)",
+          wordFamily: "freelancer (n): She is a successful freelancer. (Cô ấy là một người làm việc tự do thành công.)" },
+
+        { word: "gratitude", ipa: "/ˈɡrætɪtjuːd/", meaning: "lòng biết ơn", level: "B1", pos: "noun", test: "test2",
+          example: "She expressed her gratitude for the support she received.",
+          collocations: "express gratitude (bày tỏ lòng biết ơn), deep gratitude (lòng biết ơn sâu sắc), show gratitude (thể hiện lòng biết ơn)",
+          wordFamily: "grateful (adj): I am grateful for your help. (Tôi biết ơn sự giúp đỡ của bạn.)<br>gratefully (adv): She gratefully accepted the offer. (Cô ấy đã chấp nhận lời đề nghị với lòng biết ơn.)" },
+
+        { word: "influence", ipa: "/ˈɪnfluəns/", meaning: "ảnh hưởng, tác động", level: "B1", pos: "verb/noun", test: "test2",
+          example: "Social media influencers can influence consumer behavior.",
+          collocations: "significant influence (ảnh hưởng đáng kể), exert influence (gây ảnh hưởng), under the influence of (dưới ảnh hưởng của)",
+          wordFamily: "influential (adj): She is an influential figure in politics. (Cô ấy là một nhân vật có ảnh hưởng trong chính trị.)" },
+
+        { word: "insecurity", ipa: "/ˌɪnsɪˈkjʊərəti/", meaning: "sự bất an, không an toàn", level: "B1", pos: "noun", test: "test2",
+          example: "The gig economy can create financial insecurity for workers.",
+          collocations: "financial insecurity (bất an tài chính), job insecurity (sự không an toàn công việc), sense of insecurity (cảm giác bất an)",
+          wordFamily: "insecure (adj): He feels insecure about his job. (Anh ấy cảm thấy không an toàn về công việc của mình.)<br>security (n): Job security is important. (Sự an toàn công việc là quan trọng.)" },
+
+        { word: "intensive", ipa: "/ɪnˈtensɪv/", meaning: "chuyên sâu, cường độ cao", level: "B1", pos: "adj", test: "test2",
+          example: "The training program is very intensive.",
+          collocations: "intensive training (đào tạo chuyên sâu), intensive course (khóa học cấp tốc), labor-intensive (cần nhiều lao động)",
+          wordFamily: "intensity (n): The intensity of the training was high. (Cường độ đào tạo rất cao.)<br>intensely (adv): She trained intensely. (Cô ấy tập luyện rất căng thẳng.)" },
+
+        { word: "leverage", ipa: "/ˈliːvərɪdʒ/", meaning: "tận dụng, sử dụng (lợi thế)", level: "C1", pos: "verb", test: "test2",
+          example: "She leveraged her skills to get a better job.",
+          collocations: "leverage skills (tận dụng kỹ năng), leverage experience (tận dụng kinh nghiệm), leverage resources (tận dụng nguồn lực)",
+          wordFamily: "" },
+
+        { word: "lifelong", ipa: "/ˈlaɪflɒŋ/", meaning: "suốt đời, trọn đời", level: "B1", pos: "adj", test: "test2",
+          example: "Lifelong learning is essential in today's fast-changing world.",
+          collocations: "lifelong learning (học tập suốt đời), lifelong career (sự nghiệp trọn đời), lifelong commitment (cam kết suốt đời)",
+          wordFamily: "" },
+
+        { word: "lucrative", ipa: "/ˈluːkrətɪv/", meaning: "sinh lợi, có lợi nhuận cao", level: "B2", pos: "adj", test: "test2",
+          example: "He turned his hobby into a lucrative business.",
+          collocations: "lucrative business (kinh doanh sinh lợi), lucrative career (sự nghiệp hái ra tiền), lucrative contract (hợp đồng có lợi)",
+          wordFamily: "lucratively (adv): She is lucratively employed. (Cô ấy có công việc được trả lương cao.)" },
+
+        { word: "mindset", ipa: "/ˈmaɪndset/", meaning: "tư duy, suy nghĩ, cách nhìn nhận", level: "B2", pos: "noun", test: "test2",
+          example: "A growth mindset is important for career development.",
+          collocations: "positive mindset (tư duy tích cực), growth mindset (tư duy phát triển), change your mindset (thay đổi tư duy)",
+          wordFamily: "" },
+
+        { word: "monetise/monetize", ipa: "/ˈmʌnɪtaɪz/", meaning: "kiếm tiền từ, thương mại hóa", level: "C1", pos: "verb", test: "test2",
+          example: "Many creators struggle to monetise their content effectively.",
+          collocations: "monetise content (kiếm tiền từ nội dung), monetise a platform (thương mại hóa nền tảng)",
+          wordFamily: "monetization (n): The monetization of content is a challenge. (Việc thương mại hóa nội dung là một thách thức.)" },
+
+        { word: "navigate", ipa: "/ˈnævɪɡeɪt/", meaning: "điều hướng, vượt qua", level: "B2", pos: "verb", test: "test2",
+          example: "She successfully navigated the challenges of changing careers.",
+          collocations: "navigate challenges (vượt qua thử thách), navigate changes (điều hướng thay đổi), navigate a career (định hướng sự nghiệp)",
+          wordFamily: "navigation (n): Navigation of the job market is tricky. (Việc điều hướng thị trường lao động rất khó.)<br>navigator (n): He is a skilled navigator. (Anh ấy là một người điều hướng lành nghề.)" },
+
+        { word: "notably", ipa: "/ˈnəʊtəbli/", meaning: "đáng chú ý, đặc biệt là", level: "B2", pos: "adv", test: "test2",
+          example: "Several countries, notably Vietnam, have experienced rapid economic growth.",
+          collocations: "notably absent (đáng chú ý vắng mặt), most notably (đặc biệt nhất)",
+          wordFamily: "notable (adj): There is a notable difference. (Có một sự khác biệt đáng chú ý.)<br>note (n/v): Please note the changes. (Xin lưu ý những thay đổi.)" },
+
+        { word: "occupational", ipa: "/ˌɒkjuˈpeɪʃənəl/", meaning: "thuộc về nghề nghiệp", level: "B2", pos: "adj", test: "test2",
+          example: "Occupational safety is a priority in the construction industry.",
+          collocations: "occupational health (sức khỏe nghề nghiệp), occupational safety (an toàn lao động), occupational choice (lựa chọn nghề nghiệp)",
+          wordFamily: "occupation (n): What is your occupation? (Nghề nghiệp của bạn là gì?)<br>occupy (v): The building occupies the entire block. (Tòa nhà chiếm toàn bộ khu phố.)" },
+
+        { word: "ongoing", ipa: "/ˈɒnɡəʊɪŋ/", meaning: "đang diễn ra, tiếp diễn", level: "B1", pos: "adj", test: "test2",
+          example: "The project requires ongoing support and funding.",
+          collocations: "ongoing process (quá trình đang diễn ra), ongoing commitment (cam kết liên tục), ongoing training (đào tạo liên tục)",
+          wordFamily: "" },
+
+        { word: "perspective", ipa: "/pəˈspektɪv/", meaning: "góc nhìn, quan điểm", level: "B1", pos: "noun", test: "test2",
+          example: "Different people have different perspectives on the issue.",
+          collocations: "from my perspective (theo góc nhìn của tôi), gain a new perspective (có được góc nhìn mới), adopt a perspective (chấp nhận một quan điểm)",
+          wordFamily: "" },
+
+        { word: "raise awareness", ipa: "/reɪz əˈweənəs/", meaning: "nâng cao nhận thức", level: "B1", pos: "phrase", test: "test2",
+          example: "We need to raise awareness about this issue.",
+          collocations: "raise public awareness (nâng cao nhận thức cộng đồng), raise awareness of (nâng cao nhận thức về)",
+          wordFamily: "awareness (n): Public awareness is growing. (Nhận thức cộng đồng đang tăng lên.)" },
+
+        { word: "resilience", ipa: "/rɪˈzɪliəns/", meaning: "khả năng phục hồi, sự kiên cường", level: "C1", pos: "noun", test: "test2",
+          example: "She showed great resilience in overcoming career setbacks.",
+          collocations: "build resilience (xây dựng khả năng phục hồi), emotional resilience (khả năng phục hồi cảm xúc), demonstrate resilience (thể hiện sự kiên cường)",
+          wordFamily: "resilient (adj): Children are often more resilient than adults. (Trẻ em thường kiên cường hơn người lớn.)" },
+
+        { word: "scrutiny", ipa: "/ˈskruːtɪni/", meaning: "sự kiểm tra, giám sát chặt chẽ", level: "C1", pos: "noun", test: "test2",
+          example: "Public figures are under constant scrutiny.",
+          collocations: "under scrutiny (dưới sự giám sát), face scrutiny (đối mặt với sự giám sát), close scrutiny (sự giám sát chặt chẽ)",
+          wordFamily: "scrutinize (v): The committee scrutinized the proposal. (Ủy ban đã kiểm tra kỹ lưỡng đề xuất.)" },
+
+        { word: "self-doubt", ipa: "/ˌselfˈdaʊt/", meaning: "sự nghi ngờ bản thân", level: "B2", pos: "noun", test: "test2",
+          example: "Self-doubt can hold you back from pursuing new opportunities.",
+          collocations: "overcome self-doubt (vượt qua sự nghi ngờ bản thân), feelings of self-doubt (cảm giác nghi ngờ bản thân)",
+          wordFamily: "doubt (n/v): I have doubts about the plan. (Tôi có nghi ngờ về kế hoạch.)<br>doubtful (adj): The outcome is doubtful. (Kết quả còn nghi ngờ.)" },
+
+        { word: "shift", ipa: "/ʃɪft/", meaning: "sự thay đổi, chuyển đổi", level: "B1", pos: "noun/verb", test: "test2",
+          example: "There has been a significant shift in career expectations among young people.",
+          collocations: "shift in thinking (thay đổi trong suy nghĩ), career shift (chuyển đổi nghề nghiệp), significant shift (sự thay đổi đáng kể)",
+          wordFamily: "" },
+
+        { word: "sponsor", ipa: "/ˈspɒnsər/", meaning: "tài trợ, bảo trợ", level: "B1", pos: "verb", test: "test2",
+          example: "Many brands sponsor influencers to promote their products.",
+          collocations: "sponsor an event (tài trợ sự kiện), sponsored content (nội dung được tài trợ), corporate sponsor (nhà tài trợ doanh nghiệp)",
+          wordFamily: "sponsor (n): The sponsor provided funding. (Nhà tài trợ đã cung cấp kinh phí.)<br>sponsorship (n): The company provides sponsorship for the event. (Công ty cung cấp tài trợ cho sự kiện.)" },
+
+        { word: "stable", ipa: "/ˈsteɪbl/", meaning: "ổn định, vững chắc", level: "B1", pos: "adj", test: "test2",
+          example: "A stable income is important for financial security.",
+          collocations: "stable income (thu nhập ổn định), stable job (công việc ổn định), stable environment (môi trường ổn định)",
+          wordFamily: "stability (n): Job stability is important. (Sự ổn định công việc là quan trọng.)<br>stabilize (v): The government is trying to stabilize the economy. (Chính phủ đang cố gắng ổn định nền kinh tế.)" },
+
+        { word: "substantial", ipa: "/səbˈstænʃəl/", meaning: "đáng kể, lớn lao", level: "B1", pos: "adj", test: "test2",
+          example: "She earns a substantial income from her online business.",
+          collocations: "substantial income (thu nhập đáng kể), substantial change (thay đổi lớn), substantial impact (tác động đáng kể)",
+          wordFamily: "substantially (adv): The price has increased substantially. (Giá đã tăng lên đáng kể.)" },
+
+        { word: "tailor", ipa: "/ˈteɪlər/", meaning: "điều chỉnh, thiết kế riêng", level: "B2", pos: "verb", test: "test2",
+          example: "You should tailor your resume to each job application.",
+          collocations: "tailor a resume (điều chỉnh CV), tailor a course (thiết kế khóa học phù hợp), tailor to needs (điều chỉnh theo nhu cầu)",
+          wordFamily: "tailor-made (adj): This course is tailor-made for beginners. (Khóa học này được thiết kế riêng cho người mới bắt đầu.)" },
+
+        { word: "transferable", ipa: "/trænsˈfɜːrəbl/", meaning: "có thể chuyển đổi/áp dụng được", level: "B2", pos: "adj", test: "test2",
+          example: "Communication skills are highly transferable across industries.",
+          collocations: "transferable skills (kỹ năng có thể chuyển đổi), transferable experience (kinh nghiệm có thể áp dụng)",
+          wordFamily: "transfer (v): You can transfer your skills to a new industry. (Bạn có thể chuyển đổi kỹ năng của mình sang một ngành mới.)<br>transferability (n): The transferability of these skills is widely recognized. (Tính chuyển đổi của những kỹ năng này được công nhận rộng rãi.)" },
+
+        { word: "transition", ipa: "/trænˈzɪʃən/", meaning: "sự chuyển đổi, chuyển giao", level: "B2", pos: "noun", test: "test2",
+          example: "The transition from student to professional can be challenging.",
+          collocations: "career transition (chuyển đổi nghề nghiệp), smooth transition (sự chuyển đổi suôn sẻ), transition period (giai đoạn chuyển tiếp)",
+          wordFamily: "transitional (adj): This is a transitional period. (Đây là một giai đoạn chuyển tiếp.)" },
+
+        { word: "underestimate", ipa: "/ˌʌndərˈestɪmeɪt/", meaning: "đánh giá thấp, xem nhẹ", level: "B1", pos: "verb", test: "test2",
+          example: "People often underestimate the importance of manual workers.",
+          collocations: "underestimate the importance (đánh giá thấp tầm quan trọng), greatly underestimate (đánh giá thấp đáng kể)",
+          wordFamily: "underestimate (n): This is a common underestimate. (Đây là một sự đánh giá thấp phổ biến.)<br>overestimate (v): Don't overestimate your abilities. (Đừng đánh giá quá cao khả năng của bạn.)" },
+
+        { word: "unfailing", ipa: "/ʌnˈfeɪlɪŋ/", meaning: "không bao giờ cạn/thiếu, vô tận", level: "C1", pos: "adj", test: "test2",
+          example: "She has unfailing dedication to her work.",
+          collocations: "unfailing support (sự hỗ trợ không bao giờ thiếu), unfailing commitment (cam kết bền bỉ), unfailing optimism (sự lạc quan bền bỉ)",
+          wordFamily: "fail (v): He never fails to deliver. (Anh ấy không bao giờ thất bại trong việc thực hiện.)<br>failing (n): His biggest failing is his impatience. (Điểm yếu lớn nhất của anh ấy là sự thiếu kiên nhẫn.)" },
+
+        { word: "unconventional", ipa: "/ˌʌnkənˈvenʃənəl/", meaning: "không theo truyền thống, khác thường", level: "B2", pos: "adj", test: "test2",
+          example: "Many young people are pursuing unconventional careers today.",
+          collocations: "unconventional career (sự nghiệp không truyền thống), unconventional approach (phương pháp khác thường)",
+          wordFamily: "conventional (adj): This is a conventional approach. (Đây là một cách tiếp cận truyền thống.)<br>convention (n): Social conventions are changing. (Các quy ước xã hội đang thay đổi.)" },
+
+        { word: "visibility", ipa: "/ˌvɪzəˈbɪləti/", meaning: "khả năng nhìn thấy, mức độ hiển thị", level: "B2", pos: "noun", test: "test2",
+          example: "Changing algorithms affect the visibility of content on social media.",
+          collocations: "increase visibility (tăng khả năng hiển thị), high visibility (mức độ hiển thị cao), visibility of content (khả năng hiển thị của nội dung)",
+          wordFamily: "visible (adj): The stars are visible tonight. (Các ngôi sao có thể nhìn thấy tối nay.)<br>invisible (adj): The problem is invisible to many. (Vấn đề này vô hình đối với nhiều người.)" },
+
+        { word: "workforce", ipa: "/ˈwɜːkfɔːs/", meaning: "lực lượng lao động", level: "B1", pos: "noun", test: "test2",
+          example: "The workforce has become more diverse in recent years.",
+          collocations: "modern workforce (lực lượng lao động hiện đại), skilled workforce (lực lượng lao động có kỹ năng), workforce development (phát triển lực lượng lao động)",
+          wordFamily: "" }
+    ];
+
+    // ================================================================
+    //  RENDER FUNCTIONS
+    // ================================================================
+
+    function renderVocabCards(containerId, data) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        if (data.length === 0) {
+            container.innerHTML = `<div class="empty-msg">📭 Chưa có từ vựng nào trong mục này.</div>`;
+            return;
+        }
+
+        let html = '';
+        data.forEach(item => {
+            const posClass = item.pos === 'noun' ? 'noun' : item.pos === 'verb' ? 'verb' : 'adj';
+            const posLabel = item.pos === 'noun' ? 'Danh từ' : item.pos === 'verb' ? 'Động từ' : 'Tính từ';
+
+            let wfHtml = '';
+            if (item.wordFamily) {
+                const parts = item.wordFamily.split('<br>');
+                parts.forEach(part => {
+                    if (part.trim()) {
+                        wfHtml += `<span class="wf-item">${part}</span>`;
+                    }
+                });
+            }
+
+            html += `
+                <div class="vocab-card">
+                    <div class="word-row">
+                        <div class="word">${item.word} <span class="level">${item.level}</span></div>
+                        <span class="pos-tag ${posClass}">${posLabel}</span>
+                    </div>
+                    <div class="ipa">${item.ipa}</div>
+                    <div class="meaning">${item.meaning}</div>
+                    <div class="example">${item.example}</div>
+                    ${item.collocations ? `<div class="collocations">${item.collocations}</div>` : ''}
+                    ${item.wordFamily ? `<div class="word-family">${wfHtml}</div>` : ''}
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    // ================================================================
+    //  TAB SWITCHING
+    // ================================================================
+
+    // Main tabs
+    document.querySelectorAll('.main-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.main;
+
+            document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            document.querySelectorAll('.main-tab-content').forEach(c => c.classList.remove('active-main'));
+            document.getElementById(target).classList.add('active-main');
+
+            // Khi chuyển tab, active lại sub-tab đầu tiên của tab đó
+            const mainContent = document.getElementById(target);
+            const firstSubTab = mainContent.querySelector('.sub-tab-btn');
+            if (firstSubTab) {
+                firstSubTab.click();
+            }
+        });
+    });
+
+    // Sub tabs
+    document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.sub;
+
+            const parentMain = this.closest('.main-tab-content');
+            if (!parentMain) return;
+
+            parentMain.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            parentMain.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active-sub'));
+            document.getElementById(target).classList.add('active-sub');
+        });
+    });
+
+    // ================================================================
+    //  INITIALIZE ALL GRIDS
+    // ================================================================
+
+    function initGrids() {
+        renderVocabCards('test1NounGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'noun'));
+        renderVocabCards('test1VerbGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'verb'));
+        renderVocabCards('test1AdjGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'adj'));
+
+        renderVocabCards('test2NounGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'noun'));
+        renderVocabCards('test2VerbGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'verb'));
+        renderVocabCards('test2AdjGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'adj'));
+    }
+
+    initGrids();
+
+    console.log('✅ Unit 2: Career đã sẵn sàng! Tổng cộng ' + vocabularyData.length + ' từ vựng.');
+</script>
+
+</body>
+</html>
