@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Hệ thống Từ vựng Tiếng Anh | 15 chủ đề trọng tâm | Lớp Tiếng Anh cô Quỳnh Nhi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 30px 20px 50px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            background: linear-gradient(135deg, #FDE68A, #FCD34D, #FFB347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #cbd5e6;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .tabs-container {
+            margin: 20px auto 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 215, 120, 0.4);
+            padding: 12px 36px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: #e2e8f0;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .tab-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            box-shadow: 0 8px 20px rgba(251, 191, 36, 0.3);
+        }
+
+        .tab-btn:last-child.active {
+            background: #c084fc;
+            border-color: #c084fc;
+            color: #0f172a;
+            box-shadow: 0 8px 20px rgba(192, 132, 252, 0.3);
+        }
+
+        .tab-btn:last-child {
+            border-color: rgba(192, 132, 252, 0.5);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active-tab {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .search-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            padding: 8px 20px 8px 28px;
+            max-width: 650px;
+            margin: 20px auto 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 120, 0.5);
+        }
+
+        .search-card input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 14px 0;
+            font-size: 1rem;
+            color: #f1f5f9;
+            outline: none;
+            font-weight: 500;
+        }
+
+        .search-card input::placeholder {
+            color: #9ca3af;
+            font-weight: 400;
+        }
+
+        .search-card button {
+            background: #fbbf24;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #0f172a;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-card button:hover {
+            background: #f59e0b;
+            transform: scale(0.97);
+        }
+
+        .result-area {
+            max-width: 800px;
+            margin: 10px auto 0;
+            background: #1e293b;
+            border-radius: 28px;
+            padding: 0px 20px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .result-card {
+            background: #334155;
+            margin: 16px 0;
+            padding: 16px 20px;
+            border-radius: 28px;
+            color: white;
+            border-left: 6px solid #fbbf24;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-card strong {
+            color: #fcd34d;
+            font-size: 1.1rem;
+        }
+
+        .result-card .meaning {
+            margin-top: 8px;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .no-result {
+            color: #facc15;
+            padding: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .close-search {
+            text-align: right;
+            padding: 12px 8px 0 0;
+        }
+
+        .close-search span {
+            background: #475569;
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: #f1f5f9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.3s;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 36px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header {
+            padding: 22px 20px;
+            color: white;
+        }
+
+        .card-header h2 {
+            font-size: 1.45rem;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .card-header p {
+            opacity: 0.88;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        .card-body {
+            padding: 22px 20px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .desc {
+            color: #334155;
+            margin-bottom: 20px;
+            font-size: 0.92rem;
+            line-height: 1.45;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 14px;
+            margin-top: auto;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 6px;
+            text-align: center;
+            border-radius: 60px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .btn-theory {
+            background: #3b82f6;
+            color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            opacity: 0.85;
+            transform: scale(0.97);
+        }
+
+        .coming-soon {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 48px;
+            margin: 40px 0;
+        }
+
+        .coming-soon h3 {
+            font-size: 2rem;
+            color: #c084fc;
+            margin-bottom: 16px;
+        }
+
+        .coming-soon p {
+            color: #cbd5e6;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 65px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+        }
+
+        @media (max-width: 680px) {
+            h1 { font-size: 1.9rem; }
+            .search-card { border-radius: 40px; padding: 5px 15px; }
+            .search-card button { padding: 7px 18px; }
+            .grid { grid-template-columns: 1fr; }
+            .tab-btn { padding: 8px 24px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero">
+        <h1>BỘ TỪ VỰNG ÔN THI THPTQG</h1>
+        <div class="subtitle">15 chủ đề trọng tâm bám sát format đề thi</div>
+    </div>
+
+    <div class="tabs-container">
+        <button class="tab-btn active" data-tab="tab-b2">📘 B2 Level</button>
+        <button class="tab-btn" data-tab="tab-advanced">🚀 Advanced Level</button>
+    </div>
+
+    <!-- TAB 1: B2 LEVEL -->
+    <div id="tab-b2" class="tab-content active-tab">
+        <div class="search-card">
+            <input type="text" id="vocabSearchInput" placeholder="Tra từ vựng ... (ví dụ: explore, benefit, environment)" autocomplete="off">
+            <button id="searchBtn">🔍 Tìm kiếm</button>
+        </div>
+        <div id="searchResults" class="result-area" style="display: none;"></div>
+
+        <div class="grid">
+            <!-- UNIT 1: Life Stories -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #059669, #10b981);">
+                    <h2>Unit 1: Life Stories</h2>
+                    <p>People in History, Inspiring Journeys, Stories That Shape Us</p>
+                    <div class="badge">Nhân vật lịch sử</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về những con người trong lịch sử, hành trình truyền cảm hứng và những câu chuyện định hình chúng ta.</div>
+                    <div class="btn-group">
+                        <a href="Unit 1/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 2: Career -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #dc2626, #ef4444);">
+                    <h2>Unit 2: Career</h2>
+                    <p>The World of Work, Career Paths, Future Jobs</p>
+                    <div class="badge">Định hướng nghề nghiệp</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về thế giới công việc, con đường sự nghiệp và các công việc tương lai.</div>
+                    <div class="btn-group">
+                        <a href="Unit 2/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 3: Environment -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #7c3aed, #a78bfa);">
+                    <h2>Unit 3: Environment</h2>
+                    <p>Green Living, Wildlife Conservation, The Green Movement</p>
+                    <div class="badge">Bảo vệ môi trường</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về lối sống xanh, bảo tồn động vật hoang dã và phong trào xanh.</div>
+                    <div class="btn-group">
+                        <a href="Unit 3/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 4: Education -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #ea580c, #f97316);">
+                    <h2>Unit 4: Education</h2>
+                    <p>Lifelong Learning, Live and Learn, New Ways to Learn</p>
+                    <div class="badge">Học tập suốt đời</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về học tập suốt đời, phương pháp học mới và các cách học hiện đại.</div>
+                    <div class="btn-group">
+                        <a href="Unit 4/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 5: Culture -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #0891b2, #06b6d4);">
+                    <h2>Unit 5: Culture</h2>
+                    <p>Customs and Traditions, A Multicultural World, Cultural Diversity</p>
+                    <div class="badge">Đa dạng văn hóa</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về phong tục tập quán, thế giới đa văn hóa và sự đa dạng văn hóa.</div>
+                    <div class="btn-group">
+                        <a href="Unit 5/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 6: Artificial Intelligence -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #b45309, #d97706);">
+                    <h2>Unit 6: Artificial Intelligence</h2>
+                    <p>AI, Machine Learning, Future Technology</p>
+                    <div class="badge">Trí tuệ nhân tạo</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về trí tuệ nhân tạo, học máy và công nghệ tương lai.</div>
+                    <div class="btn-group">
+                        <a href="Unit 6/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 7: The Mass Media -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #1e3a8a, #3b82f6);">
+                    <h2>Unit 7: The Mass Media</h2>
+                    <p>Social Media, The World of Mass Media, The Media</p>
+                    <div class="badge">Truyền thông đại chúng</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về mạng xã hội, thế giới truyền thông đại chúng và các phương tiện truyền thông.</div>
+                    <div class="btn-group">
+                        <a href="Unit 7/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 8: Sports -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #be185d, #ec489a);">
+                    <h2>Unit 8: Sports</h2>
+                    <p>Sports, Athletics, Fitness</p>
+                    <div class="badge">Thể thao</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về các môn thể thao, điền kinh và thể dục thể hình.</div>
+                    <div class="btn-group">
+                        <a href="Unit 8/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 9: Health -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #0f766e, #14b8a6);">
+                    <h2>Unit 9: Health</h2>
+                    <p>A Long and Healthy Life, Eat Drink and Be Healthy, Get Well</p>
+                    <div class="badge">Sức khỏe</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về cuộc sống khỏe mạnh, dinh dưỡng và phục hồi sức khỏe.</div>
+                    <div class="btn-group">
+                        <a href="Unit 9/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 10: Technology -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #6b21a5, #c084fc);">
+                    <h2>Unit 10: Technology</h2>
+                    <p>Inventions, New Ways to Learn, Life in the Future</p>
+                    <div class="badge">Công nghệ</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về phát minh, cách học mới và cuộc sống trong tương lai.</div>
+                    <div class="btn-group">
+                        <a href="Unit 10/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 11: Entertainment -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #b45309, #f59e0b);">
+                    <h2>Unit 11: Entertainment</h2>
+                    <p>Music, Books and Films</p>
+                    <div class="badge">Giải trí</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về âm nhạc, sách vở và phim ảnh.</div>
+                    <div class="btn-group">
+                        <a href="Unit 11/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 12: Travelling -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #1e3a8a, #2563eb);">
+                    <h2>Unit 12: Travelling</h2>
+                    <p>Cities of the Future, Independent Life, On the Go, Ecotourism</p>
+                    <div class="badge">Du lịch</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về thành phố tương lai, cuộc sống độc lập, du lịch và sinh thái.</div>
+                    <div class="btn-group">
+                        <a href="Unit 12/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 13: Collocations -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #831843, #db2777);">
+                    <h2>Unit 13: Collocations</h2>
+                    <p>Collocations, Word Combinations</p>
+                    <div class="badge">Cụm từ kết hợp</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về các cụm từ kết hợp thông dụng trong tiếng Anh.</div>
+                    <div class="btn-group">
+                        <a href="Unit 13/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 14: Phrasal Verbs -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #0f172a, #334155);">
+                    <h2>Unit 14: Phrasal Verbs</h2>
+                    <p>Phrasal Verbs, Two-Word Verbs</p>
+                    <div class="badge">Cụm động từ</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về các cụm động từ thông dụng trong tiếng Anh.</div>
+                    <div class="btn-group">
+                        <a href="Unit 14/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 15: Closest and Opposite -->
+            <div class="card">
+                <div class="card-header" style="background: linear-gradient(125deg, #0f172a, #475569);">
+                    <h2>Unit 15: Closest and Opposite</h2>
+                    <p>Synonyms, Antonyms, Word Relations</p>
+                    <div class="badge">Từ đồng nghĩa & trái nghĩa</div>
+                </div>
+                <div class="card-body">
+                    <div class="desc">Từ vựng về từ đồng nghĩa, từ trái nghĩa và các mối quan hệ từ vựng.</div>
+                    <div class="btn-group">
+                        <a href="Unit 15/theory.html" class="btn btn-theory">Từ mới</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: ADVANCED LEVEL -->
+    <div id="tab-advanced" class="tab-content">
+        <div class="coming-soon">
+            <h3>✨ Advanced Level ✨</h3>
+            <p>Chuyên sâu từ vựng C1 - C2 học thuật, báo chí, và chuyên ngành</p>
+            <p style="margin-top: 16px; font-size: 0.95rem;">📌 Nội dung đang được xây dựng - Sẽ cập nhật các chủ đề nâng cao như:</p>
+            <p style="margin-top: 12px; color: #c084fc;">📖 Academic Writing | 📊 Data Analysis | ⚖️ Legal English | 💼 Business Collocations | 🧠 Psychology & Neuroscience</p>
+        </div>
+    </div>
+
+    <footer>
+        Hệ thống từ vựng chuyên sâu từ trình độ B2 đến C2 | Lớp Tiếng Anh cô Nhi<br>
+        Mỗi bài học đều có giải thích cụ thể và ví dụ thực tế.
+    </footer>
+</div>
+
+<script>
+    // ============= TAB SWITCHING LOGIC =============
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.getAttribute('data-tab');
+            
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            tabContents.forEach(content => {
+                content.classList.remove('active-tab');
+                if (content.id === targetTab) {
+                    content.classList.add('active-tab');
+                }
+            });
+        });
+    });
+
+    // ============= TÌM KIẾM =============
+    const searchInput = document.getElementById('vocabSearchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const resultDiv = document.getElementById('searchResults');
+
+    function closeSearchBox() {
+        if (resultDiv) {
+            resultDiv.style.display = "none";
+            resultDiv.innerHTML = "";
+        }
+        if (searchInput) searchInput.value = "";
+    }
+
+    function performSearch() {
+        if (!searchInput || !resultDiv) return;
+        
+        const keyword = searchInput.value.trim().toLowerCase();
+        
+        if (keyword === "") {
+            resultDiv.style.display = "none";
+            resultDiv.innerHTML = "";
+            return;
+        }
+
+        // Kiểm tra xem đã có dữ liệu từ vựng chưa (sẽ được load từ file vocabulary.js)
+        if (typeof window.vocabularyDatabase === 'undefined' || window.vocabularyDatabase.length === 0) {
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = `
+                <div class="close-search"><span id="closeSearchBtnAdv">Đóng</span></div>
+                <div class="no-result">⚠️ Chưa có dữ liệu từ vựng. Vui lòng đảm bảo file vocabulary.js đã được tải!</div>
+            `;
+            const closeBtn = document.getElementById('closeSearchBtnAdv');
+            if (closeBtn) closeBtn.onclick = closeSearchBox;
+            return;
+        }
+
+        const matchedItems = window.vocabularyDatabase.filter(item =>
+            item.word.toLowerCase().includes(keyword) ||
+            (item.meaning && item.meaning.toLowerCase().includes(keyword))
+        );
+
+        if (matchedItems.length === 0) {
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = `
+                <div class="close-search"><span id="closeSearchBtnNoResult">Đóng</span></div>
+                <div class="no-result">Không tìm thấy từ vựng "${searchInput.value}". Hãy thử từ khác nhé!</div>
+            `;
+            const closeBtn = document.getElementById('closeSearchBtnNoResult');
+            if (closeBtn) closeBtn.onclick = closeSearchBox;
+            return;
+        }
+
+        let resultsHtml = `<div class="close-search"><span id="closeSearchBtnResult">Đóng</span></div>`;
+        matchedItems.forEach(item => {
+            resultsHtml += `
+                <div class="result-card">
+                    <strong>${escapeHtml(item.word)}</strong>  
+                    <span style="background:#facc1533; padding:2px 8px; border-radius:40px; font-size:0.7rem;">${escapeHtml(item.unit)}</span>
+                    <div class="meaning">${escapeHtml(item.meaning)}</div>
+                </div>
+            `;
+        });
+        
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = resultsHtml;
+        
+        const closeBtn = document.getElementById('closeSearchBtnResult');
+        if (closeBtn) closeBtn.onclick = closeSearchBox;
+    }
+
+    // Hàm an toàn để tránh XSS
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    // Gắn sự kiện cho nút tìm kiếm
+    if (searchBtn) {
+        searchBtn.addEventListener('click', performSearch);
+    }
+    if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+    }
+</script>
+
+<!-- SAU NÀY, KHI CÓ FILE vocabulary.js, BẠN CHỈ CẦN THÊM DÒNG NÀY -->
+<!-- <script src="vocabulary.js"></script> -->
+</body>
+</html>
