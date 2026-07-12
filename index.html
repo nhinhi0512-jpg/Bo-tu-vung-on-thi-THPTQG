@@ -125,6 +125,7 @@
             color: #f1f5f9;
             outline: none;
             font-weight: 500;
+            min-width: 150px;
         }
 
         .search-card input::placeholder {
@@ -146,6 +147,7 @@
             align-items: center;
             gap: 8px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
         }
 
         .search-card button:hover {
@@ -171,17 +173,37 @@
             color: white;
             border-left: 6px solid #fbbf24;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .result-card:hover {
+            background: #3b465a;
+            transform: translateX(5px);
+        }
+
+        .result-card a {
+            text-decoration: none;
+            color: white;
+            display: block;
         }
 
         .result-card strong {
             color: #fcd34d;
             font-size: 1.1rem;
+            display: block;
         }
 
-        .result-card .meaning {
-            margin-top: 8px;
-            color: #e2e8f0;
-            font-size: 0.95rem;
+        .result-card .unit-desc {
+            margin-top: 6px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .result-card .unit-topic {
+            margin-top: 4px;
+            color: #c084fc;
+            font-size: 0.85rem;
         }
 
         .no-result {
@@ -204,6 +226,11 @@
             font-size: 0.8rem;
             cursor: pointer;
             color: #f1f5f9;
+            transition: all 0.2s ease;
+        }
+
+        .close-search span:hover {
+            background: #64748b;
         }
 
         .grid {
@@ -327,8 +354,20 @@
 
         @media (max-width: 680px) {
             h1 { font-size: 1.9rem; }
-            .search-card { border-radius: 40px; padding: 5px 15px; }
-            .search-card button { padding: 7px 18px; }
+            .search-card { 
+                border-radius: 40px; 
+                padding: 5px 15px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-card input {
+                padding: 12px 0;
+                text-align: center;
+            }
+            .search-card button { 
+                padding: 10px 18px;
+                justify-content: center;
+            }
             .grid { grid-template-columns: 1fr; }
             .tab-btn { padding: 8px 24px; font-size: 1rem; }
         }
@@ -349,14 +388,14 @@
     <!-- TAB 1: 15 chủ đề trọng tâm -->
     <div id="tab-b2" class="tab-content active-tab">
         <div class="search-card">
-            <input type="text" id="vocabSearchInput" placeholder="Tra từ vựng ... (ví dụ: explore, benefit, environment)" autocomplete="off">
-            <button id="searchBtn">🔍 Tìm kiếm</button>
+            <input type="text" id="unitSearchInput" placeholder="🔍 Tìm bài học ... (ví dụ: Environment, Education, Culture)" autocomplete="off">
+            <button id="searchBtn">Tìm kiếm</button>
         </div>
         <div id="searchResults" class="result-area" style="display: none;"></div>
 
-        <div class="grid">
+        <div class="grid" id="unitGrid">
             <!-- UNIT 1: Life Stories -->
-            <div class="card">
+            <div class="card" data-unit="Unit 1" data-unit-name="Life Stories">
                 <div class="card-header" style="background: linear-gradient(125deg, #059669, #10b981);">
                     <h2>Unit 1: Life Stories</h2>
                     <p>People in History, Inspiring Journeys, Stories That Shape Us</p>
@@ -371,7 +410,7 @@
             </div>
 
             <!-- UNIT 2: Career -->
-            <div class="card">
+            <div class="card" data-unit="Unit 2" data-unit-name="Career">
                 <div class="card-header" style="background: linear-gradient(125deg, #dc2626, #ef4444);">
                     <h2>Unit 2: Career</h2>
                     <p>The World of Work, Career Paths, Future Jobs</p>
@@ -386,7 +425,7 @@
             </div>
 
             <!-- UNIT 3: Environment -->
-            <div class="card">
+            <div class="card" data-unit="Unit 3" data-unit-name="Environment">
                 <div class="card-header" style="background: linear-gradient(125deg, #7c3aed, #a78bfa);">
                     <h2>Unit 3: Environment</h2>
                     <p>Green Living, Wildlife Conservation, The Green Movement</p>
@@ -401,7 +440,7 @@
             </div>
 
             <!-- UNIT 4: Education -->
-            <div class="card">
+            <div class="card" data-unit="Unit 4" data-unit-name="Education">
                 <div class="card-header" style="background: linear-gradient(125deg, #ea580c, #f97316);">
                     <h2>Unit 4: Education</h2>
                     <p>Lifelong Learning, Live and Learn, New Ways to Learn</p>
@@ -416,7 +455,7 @@
             </div>
 
             <!-- UNIT 5: Culture -->
-            <div class="card">
+            <div class="card" data-unit="Unit 5" data-unit-name="Culture">
                 <div class="card-header" style="background: linear-gradient(125deg, #0891b2, #06b6d4);">
                     <h2>Unit 5: Culture</h2>
                     <p>Customs and Traditions, A Multicultural World, Cultural Diversity</p>
@@ -431,7 +470,7 @@
             </div>
 
             <!-- UNIT 6: Artificial Intelligence -->
-            <div class="card">
+            <div class="card" data-unit="Unit 6" data-unit-name="Artificial Intelligence">
                 <div class="card-header" style="background: linear-gradient(125deg, #b45309, #d97706);">
                     <h2>Unit 6: Artificial Intelligence</h2>
                     <p>AI, Machine Learning, Future Technology</p>
@@ -446,7 +485,7 @@
             </div>
 
             <!-- UNIT 7: The Mass Media -->
-            <div class="card">
+            <div class="card" data-unit="Unit 7" data-unit-name="The Mass Media">
                 <div class="card-header" style="background: linear-gradient(125deg, #1e3a8a, #3b82f6);">
                     <h2>Unit 7: The Mass Media</h2>
                     <p>Social Media, The World of Mass Media, The Media</p>
@@ -461,7 +500,7 @@
             </div>
 
             <!-- UNIT 8: Sports -->
-            <div class="card">
+            <div class="card" data-unit="Unit 8" data-unit-name="Sports">
                 <div class="card-header" style="background: linear-gradient(125deg, #be185d, #ec489a);">
                     <h2>Unit 8: Sports</h2>
                     <p>Sports, Athletics, Fitness</p>
@@ -476,7 +515,7 @@
             </div>
 
             <!-- UNIT 9: Health -->
-            <div class="card">
+            <div class="card" data-unit="Unit 9" data-unit-name="Health">
                 <div class="card-header" style="background: linear-gradient(125deg, #0f766e, #14b8a6);">
                     <h2>Unit 9: Health</h2>
                     <p>A Long and Healthy Life, Eat Drink and Be Healthy, Get Well</p>
@@ -491,7 +530,7 @@
             </div>
 
             <!-- UNIT 10: Technology -->
-            <div class="card">
+            <div class="card" data-unit="Unit 10" data-unit-name="Technology">
                 <div class="card-header" style="background: linear-gradient(125deg, #6b21a5, #c084fc);">
                     <h2>Unit 10: Technology</h2>
                     <p>Inventions, New Ways to Learn, Life in the Future</p>
@@ -506,7 +545,7 @@
             </div>
 
             <!-- UNIT 11: Entertainment -->
-            <div class="card">
+            <div class="card" data-unit="Unit 11" data-unit-name="Entertainment">
                 <div class="card-header" style="background: linear-gradient(125deg, #b45309, #f59e0b);">
                     <h2>Unit 11: Entertainment</h2>
                     <p>Music, Books and Films</p>
@@ -521,7 +560,7 @@
             </div>
 
             <!-- UNIT 12: Travelling -->
-            <div class="card">
+            <div class="card" data-unit="Unit 12" data-unit-name="Travelling">
                 <div class="card-header" style="background: linear-gradient(125deg, #1e3a8a, #2563eb);">
                     <h2>Unit 12: Travelling</h2>
                     <p>Cities of the Future, Independent Life, On the Go, Ecotourism</p>
@@ -536,7 +575,7 @@
             </div>
 
             <!-- UNIT 13: Collocations -->
-            <div class="card">
+            <div class="card" data-unit="Unit 13" data-unit-name="Collocations">
                 <div class="card-header" style="background: linear-gradient(125deg, #831843, #db2777);">
                     <h2>Unit 13: Collocations</h2>
                     <p>Collocations, Word Combinations</p>
@@ -551,7 +590,7 @@
             </div>
 
             <!-- UNIT 14: Phrasal Verbs -->
-            <div class="card">
+            <div class="card" data-unit="Unit 14" data-unit-name="Phrasal Verbs">
                 <div class="card-header" style="background: linear-gradient(125deg, #0f172a, #334155);">
                     <h2>Unit 14: Phrasal Verbs</h2>
                     <p>Phrasal Verbs, Two-Word Verbs</p>
@@ -566,7 +605,7 @@
             </div>
 
             <!-- UNIT 15: Closest and Opposite -->
-            <div class="card">
+            <div class="card" data-unit="Unit 15" data-unit-name="Closest and Opposite">
                 <div class="card-header" style="background: linear-gradient(125deg, #0f172a, #475569);">
                     <h2>Unit 15: Closest and Opposite</h2>
                     <p>Synonyms, Antonyms, Word Relations</p>
@@ -619,10 +658,31 @@
         });
     });
 
-    // ============= TÌM KIẾM =============
-    const searchInput = document.getElementById('vocabSearchInput');
+    // ============= TÌM KIẾM BÀI HỌC =============
+    const searchInput = document.getElementById('unitSearchInput');
     const searchBtn = document.getElementById('searchBtn');
     const resultDiv = document.getElementById('searchResults');
+    const unitGrid = document.getElementById('unitGrid');
+    const allCards = document.querySelectorAll('.card[data-unit]');
+
+    // Danh sách tất cả bài học để tìm kiếm
+    const unitData = [
+        { unit: 'Unit 1', name: 'Life Stories', topic: 'Nhân vật lịch sử', description: 'Từ vựng về những con người trong lịch sử, hành trình truyền cảm hứng và những câu chuyện định hình chúng ta.' },
+        { unit: 'Unit 2', name: 'Career', topic: 'Định hướng nghề nghiệp', description: 'Từ vựng về thế giới công việc, con đường sự nghiệp và các công việc tương lai.' },
+        { unit: 'Unit 3', name: 'Environment', topic: 'Bảo vệ môi trường', description: 'Từ vựng về lối sống xanh, bảo tồn động vật hoang dã và phong trào xanh.' },
+        { unit: 'Unit 4', name: 'Education', topic: 'Học tập suốt đời', description: 'Từ vựng về học tập suốt đời, phương pháp học mới và các cách học hiện đại.' },
+        { unit: 'Unit 5', name: 'Culture', topic: 'Đa dạng văn hóa', description: 'Từ vựng về phong tục tập quán, thế giới đa văn hóa và sự đa dạng văn hóa.' },
+        { unit: 'Unit 6', name: 'Artificial Intelligence', topic: 'Trí tuệ nhân tạo', description: 'Từ vựng về trí tuệ nhân tạo, học máy và công nghệ tương lai.' },
+        { unit: 'Unit 7', name: 'The Mass Media', topic: 'Truyền thông đại chúng', description: 'Từ vựng về mạng xã hội, thế giới truyền thông đại chúng và các phương tiện truyền thông.' },
+        { unit: 'Unit 8', name: 'Sports', topic: 'Thể thao', description: 'Từ vựng về các môn thể thao, điền kinh và thể dục thể hình.' },
+        { unit: 'Unit 9', name: 'Health', topic: 'Sức khỏe', description: 'Từ vựng về cuộc sống khỏe mạnh, dinh dưỡng và phục hồi sức khỏe.' },
+        { unit: 'Unit 10', name: 'Technology', topic: 'Công nghệ', description: 'Từ vựng về phát minh, cách học mới và cuộc sống trong tương lai.' },
+        { unit: 'Unit 11', name: 'Entertainment', topic: 'Giải trí', description: 'Từ vựng về âm nhạc, sách vở và phim ảnh.' },
+        { unit: 'Unit 12', name: 'Travelling', topic: 'Du lịch', description: 'Từ vựng về thành phố tương lai, cuộc sống độc lập, du lịch và sinh thái.' },
+        { unit: 'Unit 13', name: 'Collocations', topic: 'Cụm từ kết hợp', description: 'Từ vựng về các cụm từ kết hợp thông dụng trong tiếng Anh.' },
+        { unit: 'Unit 14', name: 'Phrasal Verbs', topic: 'Cụm động từ', description: 'Từ vựng về các cụm động từ thông dụng trong tiếng Anh.' },
+        { unit: 'Unit 15', name: 'Closest and Opposite', topic: 'Từ đồng nghĩa & trái nghĩa', description: 'Từ vựng về từ đồng nghĩa, từ trái nghĩa và các mối quan hệ từ vựng.' }
+    ];
 
     function closeSearchBox() {
         if (resultDiv) {
@@ -630,6 +690,10 @@
             resultDiv.innerHTML = "";
         }
         if (searchInput) searchInput.value = "";
+        // Hiện lại tất cả các card
+        allCards.forEach(card => {
+            card.style.display = 'flex';
+        });
     }
 
     function performSearch() {
@@ -638,46 +702,54 @@
         const keyword = searchInput.value.trim().toLowerCase();
         
         if (keyword === "") {
-            resultDiv.style.display = "none";
-            resultDiv.innerHTML = "";
+            closeSearchBox();
             return;
         }
 
-        // Kiểm tra xem đã có dữ liệu từ vựng chưa (sẽ được load từ file vocabulary.js)
-        if (typeof window.vocabularyDatabase === 'undefined' || window.vocabularyDatabase.length === 0) {
-            resultDiv.style.display = "block";
-            resultDiv.innerHTML = `
-                <div class="close-search"><span id="closeSearchBtnAdv">Đóng</span></div>
-                <div class="no-result">⚠️ Chưa có dữ liệu từ vựng. Vui lòng đảm bảo file vocabulary.js đã được tải!</div>
-            `;
-            const closeBtn = document.getElementById('closeSearchBtnAdv');
-            if (closeBtn) closeBtn.onclick = closeSearchBox;
-            return;
-        }
-
-        const matchedItems = window.vocabularyDatabase.filter(item =>
-            item.word.toLowerCase().includes(keyword) ||
-            (item.meaning && item.meaning.toLowerCase().includes(keyword))
+        // Lọc các bài học phù hợp
+        const matchedUnits = unitData.filter(item =>
+            item.unit.toLowerCase().includes(keyword) ||
+            item.name.toLowerCase().includes(keyword) ||
+            item.topic.toLowerCase().includes(keyword) ||
+            item.description.toLowerCase().includes(keyword)
         );
 
-        if (matchedItems.length === 0) {
+        // Nếu có kết quả, ẩn grid và hiển thị kết quả tìm kiếm
+        if (matchedUnits.length === 0) {
+            // Ẩn tất cả card
+            allCards.forEach(card => {
+                card.style.display = 'none';
+            });
+            
             resultDiv.style.display = "block";
             resultDiv.innerHTML = `
                 <div class="close-search"><span id="closeSearchBtnNoResult">Đóng</span></div>
-                <div class="no-result">Không tìm thấy từ vựng "${searchInput.value}". Hãy thử từ khác nhé!</div>
+                <div class="no-result">Không tìm thấy bài học "${searchInput.value}". Hãy thử từ khóa khác nhé!</div>
             `;
             const closeBtn = document.getElementById('closeSearchBtnNoResult');
             if (closeBtn) closeBtn.onclick = closeSearchBox;
             return;
         }
 
+        // Ẩn tất cả card
+        allCards.forEach(card => {
+            card.style.display = 'none';
+        });
+
+        // Hiển thị kết quả
         let resultsHtml = `<div class="close-search"><span id="closeSearchBtnResult">Đóng</span></div>`;
-        matchedItems.forEach(item => {
+        matchedUnits.forEach(item => {
+            // Tìm card tương ứng để lấy link
+            const card = document.querySelector(`.card[data-unit="${item.unit}"]`);
+            const link = card ? card.querySelector('.btn-theory').getAttribute('href') : '#';
+            
             resultsHtml += `
-                <div class="result-card">
-                    <strong>${escapeHtml(item.word)}</strong>  
-                    <span style="background:#facc1533; padding:2px 8px; border-radius:40px; font-size:0.7rem;">${escapeHtml(item.unit)}</span>
-                    <div class="meaning">${escapeHtml(item.meaning)}</div>
+                <div class="result-card" onclick="window.location.href='${link}'">
+                    <a href="${link}">
+                        <strong>${item.unit}: ${item.name}</strong>
+                        <div class="unit-topic">🏷️ ${item.topic}</div>
+                        <div class="unit-desc">${item.description}</div>
+                    </a>
                 </div>
             `;
         });
@@ -689,19 +761,6 @@
         if (closeBtn) closeBtn.onclick = closeSearchBox;
     }
 
-    // Hàm an toàn để tránh XSS
-    function escapeHtml(str) {
-        if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
-        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-            return c;
-        });
-    }
-
     // Gắn sự kiện cho nút tìm kiếm
     if (searchBtn) {
         searchBtn.addEventListener('click', performSearch);
@@ -710,10 +769,14 @@
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') performSearch();
         });
+        // Xóa tìm kiếm khi input rỗng
+        searchInput.addEventListener('input', function() {
+            if (this.value.trim() === '') {
+                closeSearchBox();
+            }
+        });
     }
 </script>
 
-<!-- SAU NÀY, KHI CÓ FILE vocabulary.js, BẠN CHỈ CẦN THÊM DÒNG NÀY -->
-<!-- <script src="vocabulary.js"></script> -->
 </body>
 </html>
