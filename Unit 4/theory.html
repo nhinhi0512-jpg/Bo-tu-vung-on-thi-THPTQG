@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4: Education - Từ vựng THPTQG | Cô Quỳnh Nhi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 20px 16px 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: #f1f5f9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+        }
+
+        .home-btn:hover {
+            background: #3b82f6;
+            color: #0f172a;
+            border-color: #3b82f6;
+            transform: scale(0.97);
+        }
+
+        .home-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .header-title {
+            color: #f1f5f9;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .header-title span {
+            color: #60a5fa;
+        }
+
+        .header-badge {
+            background: #3b82f6;
+            color: #0f172a;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        /* ===== MAIN TABS ===== */
+        .main-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .main-tab-btn {
+            padding: 14px 32px;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-tab-btn:hover {
+            color: #e2e8f0;
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .main-tab-btn.active {
+            background: #3b82f6;
+            color: #0f172a;
+            border-color: #3b82f6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.25);
+        }
+
+        .main-tab-btn .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        .main-tab-btn.active .badge-count {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .main-tab-content {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+
+        .main-tab-content.active-main {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== SUB TABS ===== */
+        .sub-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .sub-tab-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sub-tab-btn:hover {
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sub-tab-btn.active {
+            background: #3b82f6;
+            color: #0f172a;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .sub-tab-btn .icon {
+            font-size: 1.1rem;
+        }
+
+        .sub-tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .sub-tab-content.active-sub {
+            display: block;
+        }
+
+        /* ===== VOCAB CARD ===== */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                border-radius: 28px;
+                padding: 12px 16px;
+            }
+            .main-tab-btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+            .sub-tab-btn {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+        }
+
+        .vocab-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px 22px 22px;
+            box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border-left: 5px solid #3b82f6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .vocab-card .word-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .vocab-card .word {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .vocab-card .level {
+            font-size: 0.6rem;
+            background: #f1f5f9;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: 0.5px;
+        }
+
+        .vocab-card .ipa {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .vocab-card .meaning {
+            color: #1e293b;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 8px;
+            padding: 8px 14px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .vocab-card .example {
+            color: #475569;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            border-left: 3px solid #94a3b8;
+            line-height: 1.5;
+        }
+
+        .vocab-card .example::before {
+            content: "📌 ";
+            font-style: normal;
+        }
+
+        .vocab-card .collocations {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fef3c7;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #92400e;
+            line-height: 1.6;
+        }
+
+        .vocab-card .collocations::before {
+            content: "🔗 Collocations: ";
+            font-weight: 700;
+        }
+
+        .vocab-card .word-family {
+            margin-top: 8px;
+            padding: 10px 14px;
+            background: #e0f2fe;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            color: #0369a1;
+            line-height: 1.7;
+        }
+
+        .vocab-card .word-family::before {
+            content: "📚 Word family: ";
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .vocab-card .word-family .wf-item {
+            display: block;
+            padding: 2px 0;
+        }
+
+        .vocab-card .word-family .wf-item .wf-word {
+            font-weight: 600;
+            color: #0c4a6e;
+        }
+
+        .vocab-card .word-family .wf-item .wf-example {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .vocab-card .pos-tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pos-tag.noun { background: #dbeafe; color: #1d4ed8; }
+        .pos-tag.verb { background: #d1fae5; color: #059669; }
+        .pos-tag.adj { background: #fce7f3; color: #be185d; }
+        .pos-tag.phrase { background: #e0e7ff; color: #4338ca; }
+        .pos-tag.adv { background: #fef08a; color: #854d0e; }
+
+        .empty-msg {
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .text-center { text-align: center; }
+        .mt-20 { margin-top: 20px; }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../index.html" class="home-btn">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Trang chủ
+            </a>
+            <div class="header-title">
+                📚 Unit 4: <span>Education</span>
+            </div>
+        </div>
+        <div class="header-badge">
+            🎓 38 từ vựng B1–C2
+        </div>
+    </header>
+
+    <!-- ===== MAIN TABS ===== -->
+    <div class="main-tabs">
+        <button class="main-tab-btn active" data-main="main-test1">
+            📘 TEST 01 <span class="badge-count">15 từ</span>
+        </button>
+        <button class="main-tab-btn" data-main="main-test2">
+            📗 TEST 02 <span class="badge-count">23 từ</span>
+        </button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 01 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test1" class="main-tab-content active-main">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test1-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">7</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">7</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">0</span>
+            </button>
+        </div>
+
+        <div id="test1-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test1NounGrid"></div></div>
+        <div id="test1-verbs" class="sub-tab-content"><div class="vocab-grid" id="test1VerbGrid"></div></div>
+        <div id="test1-adj" class="sub-tab-content"><div class="vocab-grid" id="test1AdjGrid"></div></div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 02 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test2" class="main-tab-content">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test2-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">11</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">9</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">3</span>
+            </button>
+        </div>
+
+        <div id="test2-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test2NounGrid"></div></div>
+        <div id="test2-verbs" class="sub-tab-content"><div class="vocab-grid" id="test2VerbGrid"></div></div>
+        <div id="test2-adj" class="sub-tab-content"><div class="vocab-grid" id="test2AdjGrid"></div></div>
+    </div>
+
+    <footer>
+        Hệ thống từ vựng chuyên sâu luyện thi THPTQG | Ms.Nhi's English Class<br>
+    </footer>
+</div>
+
+<script>
+    // ================================================================
+    //  DATA: UNIT 4: EDUCATION - TEST 01 & TEST 02
+    //  Lọc từ đã có ở test 01 → test 02 không trùng lặp
+    // ================================================================
+    const vocabularyData = [
+        // ===================== TEST 01 =====================
+        // ---- NOUNS (7) ----
+        { word: "adaptation", ipa: "/ˌæd.əpˈteɪ.ʃən/", meaning: "sự thích nghi, sự điều chỉnh", level: "B2", pos: "noun", test: "test1",
+          example: "The adaptation to online learning was challenging for many students.",
+          collocations: "adaptation to change, successful adaptation, adaptation process",
+          wordFamily: "adapt (v): Students need to learn how to adapt to new learning environments quickly.<br>adaptable (adj): An adaptable learner can succeed in any situation.<br>adapted (adj): The course was adapted for beginners." },
+
+        { word: "application", ipa: "/ˌæp.lɪˈkeɪ.ʃən/", meaning: "sự áp dụng; đơn xin", level: "B1", pos: "noun", test: "test1",
+          example: "The application of new technology improved learning outcomes.",
+          collocations: "application of knowledge, application for a course, practical application",
+          wordFamily: "apply (v): Students should apply what they learn in class to real-life situations.<br>applicable (adj): These rules are applicable to all students." },
+
+        { word: "assessment", ipa: "/əˈses.mənt/", meaning: "sự đánh giá", level: "B2", pos: "noun", test: "test1",
+          example: "Continuous assessment helps improve learning and teaching methods.",
+          collocations: "continuous assessment, formal assessment, self-assessment",
+          wordFamily: "assess (v): Teachers assess students' progress through both tests and projects.<br>assessable (adj): The learning outcomes are clearly assessable." },
+
+        { word: "engagement", ipa: "/ɪnˈɡeɪdʒ.mənt/", meaning: "sự tham gia, sự thu hút", level: "B2", pos: "noun", test: "test1",
+          example: "Student engagement improves significantly with interactive lessons.",
+          collocations: "student engagement, active engagement, engagement in learning",
+          wordFamily: "engage (v): Interactive lessons engage students more effectively than traditional lectures.<br>engaging (adj): The teacher made the lesson very engaging." },
+
+        { word: "exploration", ipa: "/ˌek.spləˈreɪ.ʃən/", meaning: "sự khám phá, sự tìm hiểu", level: "B2", pos: "noun", test: "test1",
+          example: "Exploration of new subjects broadens the mind and encourages curiosity.",
+          collocations: "exploration of topics, exploration of ideas, exploration of solutions",
+          wordFamily: "explore (v): Project-based learning allows students to explore real-world problems." },
+
+        { word: "integration", ipa: "/ˌɪn.tɪˈɡreɪ.ʃən/", meaning: "sự tích hợp", level: "C1", pos: "noun", test: "test1",
+          example: "The integration of theory and practice is essential in education.",
+          collocations: "integration of knowledge, integration of subjects, integration of skills",
+          wordFamily: "integrate (v): Schools should integrate technology into everyday teaching." },
+
+        { word: "investigation", ipa: "/ɪnˌves.tɪˈɡeɪ.ʃən/", meaning: "cuộc điều tra, sự nghiên cứu", level: "B2", pos: "noun", test: "test1",
+          example: "The investigation into learning methods was thorough and insightful.",
+          collocations: "investigation of problems, investigation into causes, investigation of solutions",
+          wordFamily: "investigate (v): Students investigate real-life issues through group projects." },
+
+        // ---- VERBS (7) ----
+        { word: "apply", ipa: "/əˈplaɪ/", meaning: "áp dụng, ứng dụng", level: "B1", pos: "verb", test: "test1",
+          example: "Students should apply what they learn in class to real-life situations.",
+          collocations: "apply knowledge, apply a method, apply to practice",
+          wordFamily: "application (n): The application of new technology improved learning.<br>applicable (adj): These rules are applicable to all students." },
+
+        { word: "assess", ipa: "/əˈses/", meaning: "đánh giá", level: "B2", pos: "verb", test: "test1",
+          example: "Teachers assess students' progress through both tests and projects.",
+          collocations: "assess performance, assess understanding, assess skills",
+          wordFamily: "assessment (n): Continuous assessment helps improve learning.<br>assessable (adj): The learning outcomes are clearly assessable." },
+
+        { word: "benefit", ipa: "/ˈben.ɪ.fɪt/", meaning: "hưởng lợi, có lợi", level: "B1", pos: "verb", test: "test1",
+          example: "Both teachers and students benefit from interactive learning methods.",
+          collocations: "benefit from experience, greatly benefit, benefit society",
+          wordFamily: "beneficial (adj): Regular reading is beneficial for language development." },
+
+        { word: "engage", ipa: "/ɪnˈɡeɪdʒ/", meaning: "thu hút, tham gia tích cực", level: "B2", pos: "verb", test: "test1",
+          example: "Interactive lessons engage students more effectively than traditional lectures.",
+          collocations: "engage students, engage in learning, engage with content",
+          wordFamily: "engagement (n): Student engagement improves academic performance.<br>engaging (adj): The teacher made the lesson very engaging." },
+
+        { word: "integrate", ipa: "/ˈɪn.tɪ.ɡreɪt/", meaning: "tích hợp", level: "C1", pos: "verb", test: "test1",
+          example: "Schools should integrate technology into everyday teaching.",
+          collocations: "integrate knowledge, integrate subjects, integrate skills",
+          wordFamily: "integration (n): The integration of theory and practice is essential." },
+
+        { word: "investigate", ipa: "/ɪnˈves.tɪ.ɡeɪt/", meaning: "điều tra, nghiên cứu", level: "B2", pos: "verb", test: "test1",
+          example: "Students investigate real-life issues through group projects.",
+          collocations: "investigate problems, investigate causes, investigate solutions",
+          wordFamily: "investigation (n): The investigation into learning methods was thorough." },
+
+        { word: "participate", ipa: "/pɑːrˈtɪs.ə.peɪt/", meaning: "tham gia", level: "B1", pos: "verb", test: "test1",
+          example: "Students are encouraged to participate in community service activities.",
+          collocations: "participate actively, participate in discussions, participate in projects",
+          wordFamily: "participation (n): Active participation improves learning outcomes." },
+
+        // ---- ADJECTIVES (0) ----
+        // (Không có tính từ nào từ test 1 đạt B1-C2)
+
+        // ===================== TEST 02 =====================
+        // ---- NOUNS (11) ----
+        { word: "acquisition", ipa: "/ˌæk.wɪˈzɪʃ.ən/", meaning: "sự tiếp thu, sự đạt được", level: "B2", pos: "noun", test: "test2",
+          example: "The acquisition of new languages is easier for young learners.",
+          collocations: "acquisition of knowledge, acquisition of skills, language acquisition",
+          wordFamily: "acquire (v): Students acquire practical skills through internships.<br>acquirable (adj): These skills are acquirable through practice." },
+
+        { word: "communication", ipa: "/kəˌmjuː.nɪˈkeɪ.ʃən/", meaning: "sự giao tiếp, sự truyền đạt", level: "B1", pos: "noun", test: "test2",
+          example: "Good communication is essential in teamwork and group projects.",
+          collocations: "effective communication, communication skills, verbal communication",
+          wordFamily: "communicate (v): Students need to learn how to communicate effectively.<br>communicative (adj): She is very communicative and easy to work with." },
+
+        { word: "concentration", ipa: "/ˌkɒn.sənˈtreɪ.ʃən/", meaning: "sự tập trung", level: "B1", pos: "noun", test: "test2",
+          example: "High concentration levels lead to better learning outcomes.",
+          collocations: "concentration levels, lack of concentration, concentration span",
+          wordFamily: "concentrate (v): Students often find it hard to concentrate during long lectures.<br>concentrated (adj): She gave the task her concentrated effort." },
+
+        { word: "contribution", ipa: "/ˌkɒn.trɪˈbjuː.ʃən/", meaning: "sự đóng góp", level: "B2", pos: "noun", test: "test2",
+          example: "Each student's contribution is valued in group projects.",
+          collocations: "contribution to society, contribution to discussions, contribution of ideas",
+          wordFamily: "contribute (v): Students should learn how to contribute positively to their communities." },
+
+        { word: "empathy", ipa: "/ˈem.pə.θi/", meaning: "sự đồng cảm", level: "C1", pos: "noun", test: "test2",
+          example: "Empathy helps build strong relationships in school and beyond.",
+          collocations: "show empathy, develop empathy, empathy for others",
+          wordFamily: "empathize (v): Teachers should empathize with students who face difficulties.<br>empathetic (adj): An empathetic teacher understands students' struggles." },
+
+        { word: "motivation", ipa: "/ˌmoʊ.tɪˈveɪ.ʃən/", meaning: "động lực", level: "B2", pos: "noun", test: "test2",
+          example: "High motivation leads to better academic results and engagement.",
+          collocations: "intrinsic motivation, extrinsic motivation, motivation to learn",
+          wordFamily: "motivate (v): Teachers should motivate students to take ownership of their learning.<br>motivated (adj): She is a highly motivated learner." },
+
+        { word: "navigation", ipa: "/ˌnæv.ɪˈɡeɪ.ʃən/", meaning: "sự điều hướng, sự xoay sở", level: "C1", pos: "noun", test: "test2",
+          example: "Good decision-making skills aid in life navigation and career success.",
+          collocations: "life navigation, navigation of challenges, career navigation",
+          wordFamily: "navigate (v): Education helps students navigate complex social environments." },
+
+        { word: "reflection", ipa: "/rɪˈflek.ʃən/", meaning: "sự suy ngẫm, sự phản ánh", level: "B2", pos: "noun", test: "test2",
+          example: "Regular reflection helps improve study strategies and self-awareness.",
+          collocations: "reflection on learning, self-reflection, critical reflection",
+          wordFamily: "reflect (v): Portfolios allow students to reflect on their own progress." },
+
+        { word: "requirement", ipa: "/rɪˈkwaɪə.mənt/", meaning: "yêu cầu, điều kiện", level: "B1", pos: "noun", test: "test2",
+          example: "Meeting the course requirements is necessary for graduation.",
+          collocations: "academic requirements, course requirements, admission requirements",
+          wordFamily: "require (v): New teaching methods require both effort and creativity.<br>required (adj): This course is required for all first-year students." },
+
+        { word: "resilience", ipa: "/rɪˈzɪl.i.əns/", meaning: "sự kiên cường, khả năng phục hồi", level: "C1", pos: "noun", test: "test2",
+          example: "Learning from failures helps students develop resilience and perseverance.",
+          collocations: "build resilience, show resilience, develop resilience",
+          wordFamily: "resilient (adj): Resilient students cope better with academic pressure." },
+
+        { word: "undertaking", ipa: "/ˌʌn.dərˈteɪ.kɪŋ/", meaning: "công việc, nhiệm vụ", level: "C1", pos: "noun", test: "test2",
+          example: "The undertaking of group work builds teamwork and collaboration skills.",
+          collocations: "undertaking of projects, important undertaking, major undertaking",
+          wordFamily: "undertake (v): Students undertake projects that require collaboration and research." },
+
+        // ---- VERBS (9) ----
+        { word: "acquire", ipa: "/əˈkwaɪər/", meaning: "tiếp thu, đạt được (kiến thức, kỹ năng)", level: "B2", pos: "verb", test: "test2",
+          example: "Students acquire practical skills through internships and real-world projects.",
+          collocations: "acquire knowledge, acquire skills, acquire experience",
+          wordFamily: "acquisition (n): The acquisition of new languages is easier for young learners.<br>acquirable (adj): These skills are acquirable through practice." },
+
+        { word: "boost", ipa: "/buːst/", meaning: "thúc đẩy, tăng cường", level: "B2", pos: "verb", test: "test2",
+          example: "Interactive learning methods can boost students' motivation and engagement.",
+          collocations: "boost confidence, boost performance, boost creativity",
+          wordFamily: "booster (n): Group work is a great confidence booster for shy students." },
+
+        { word: "communicate", ipa: "/kəˈmjuː.nɪ.keɪt/", meaning: "giao tiếp, truyền đạt", level: "B1", pos: "verb", test: "test2",
+          example: "Students need to learn how to communicate effectively in both written and spoken forms.",
+          collocations: "communicate clearly, communicate ideas, communicate with others",
+          wordFamily: "communication (n): Good communication is essential in teamwork.<br>communicative (adj): She is very communicative and easy to work with." },
+
+        { word: "concentrate", ipa: "/ˈkɒn.sən.treɪt/", meaning: "tập trung", level: "B1", pos: "verb", test: "test2",
+          example: "Students often find it hard to concentrate during long online lectures.",
+          collocations: "concentrate on study, concentrate fully, lose concentration",
+          wordFamily: "concentration (n): High concentration levels lead to better learning outcomes.<br>concentrated (adj): She gave the task her concentrated effort." },
+
+        { word: "confront", ipa: "/kənˈfrʌnt/", meaning: "đối mặt, giải quyết (vấn đề, thử thách)", level: "C1", pos: "verb", test: "test2",
+          example: "Education teaches students how to confront challenges with confidence.",
+          collocations: "confront challenges, confront problems, confront difficulties",
+          wordFamily: "confrontation (n): The confrontation with failure helps build resilience.<br>confrontational (adj): A confrontational attitude is not helpful in teamwork." },
+
+        { word: "contribute", ipa: "/kənˈtrɪb.juːt/", meaning: "đóng góp", level: "B2", pos: "verb", test: "test2",
+          example: "Students should learn how to contribute positively to their communities.",
+          collocations: "contribute to society, contribute ideas, contribute to discussions",
+          wordFamily: "contribution (n): Each student's contribution is valued in group projects." },
+
+        { word: "cope", ipa: "/koʊp/", meaning: "đối phó, xoay sở", level: "B2", pos: "verb", test: "test2",
+          example: "Students must learn to cope with stress and academic pressure.",
+          collocations: "cope with stress, cope with challenges, cope effectively",
+          wordFamily: "coping (n): Coping strategies are essential for mental well-being." },
+
+        { word: "embrace", ipa: "/ɪmˈbreɪs/", meaning: "chấp nhận, đón nhận (cơ hội, thay đổi)", level: "C1", pos: "verb", test: "test2",
+          example: "Students should embrace new learning methods instead of sticking to old habits.",
+          collocations: "embrace change, embrace challenges, embrace opportunities",
+          wordFamily: "embracing (adj): An embracing attitude toward failure encourages growth." },
+
+        { word: "navigate", ipa: "/ˈnæv.ɪ.ɡeɪt/", meaning: "điều hướng, xoay sở, vượt qua", level: "C1", pos: "verb", test: "test2",
+          example: "Education helps students navigate complex social and professional environments.",
+          collocations: "navigate challenges, navigate life, navigate situations",
+          wordFamily: "navigation (n): Good decision-making skills aid in life navigation." },
+
+        // ---- ADJECTIVES (3) ----
+        { word: "communicative", ipa: "/kəˈmjuː.nɪ.kə.tɪv/", meaning: "cởi mở, thích giao tiếp", level: "B2", pos: "adj", test: "test2",
+          example: "She is very communicative and easy to work with in group projects.",
+          collocations: "communicative skills, communicative approach, highly communicative",
+          wordFamily: "communicate (v): Students need to learn how to communicate effectively.<br>communication (n): Good communication is essential in teamwork." },
+
+        { word: "empathetic", ipa: "/ˌem.pəˈθet.ɪk/", meaning: "giàu lòng đồng cảm, thấu cảm", level: "C1", pos: "adj", test: "test2",
+          example: "An empathetic teacher understands students' struggles and supports them.",
+          collocations: "empathetic approach, empathetic listener, empathetic understanding",
+          wordFamily: "empathize (v): Teachers should empathize with students who face difficulties.<br>empathy (n): Empathy helps build strong relationships in school." },
+
+        { word: "resilient", ipa: "/rɪˈzɪl.i.ənt/", meaning: "kiên cường, có khả năng phục hồi", level: "C1", pos: "adj", test: "test2",
+          example: "Resilient students cope better with academic pressure and setbacks.",
+          collocations: "resilient attitude, resilient mindset, resilient individual",
+          wordFamily: "resilience (n): Learning from failures helps students develop resilience." }
+    ];
+
+    // ================================================================
+    //  RENDER FUNCTIONS
+    // ================================================================
+
+    function renderVocabCards(containerId, data) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        if (data.length === 0) {
+            container.innerHTML = `<div class="empty-msg">📭 Chưa có từ vựng nào trong mục này.</div>`;
+            return;
+        }
+
+        let html = '';
+        data.forEach(item => {
+            const posClass = item.pos === 'noun' ? 'noun' : item.pos === 'verb' ? 'verb' : item.pos === 'adj' ? 'adj' : 'phrase';
+            const posLabel = item.pos === 'noun' ? 'Danh từ' : item.pos === 'verb' ? 'Động từ' : item.pos === 'adj' ? 'Tính từ' : 'Cụm từ';
+
+            let wfHtml = '';
+            if (item.wordFamily) {
+                const parts = item.wordFamily.split('<br>');
+                parts.forEach(part => {
+                    if (part.trim()) {
+                        wfHtml += `<span class="wf-item">${part}</span>`;
+                    }
+                });
+            }
+
+            html += `
+                <div class="vocab-card">
+                    <div class="word-row">
+                        <div class="word">${item.word} <span class="level">${item.level}</span></div>
+                        <span class="pos-tag ${posClass}">${posLabel}</span>
+                    </div>
+                    <div class="ipa">${item.ipa}</div>
+                    <div class="meaning">${item.meaning}</div>
+                    <div class="example">${item.example}</div>
+                    ${item.collocations ? `<div class="collocations">${item.collocations}</div>` : ''}
+                    ${item.wordFamily ? `<div class="word-family">${wfHtml}</div>` : ''}
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    // ================================================================
+    //  TAB SWITCHING
+    // ================================================================
+
+    // Main tabs
+    document.querySelectorAll('.main-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.main;
+
+            document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            document.querySelectorAll('.main-tab-content').forEach(c => c.classList.remove('active-main'));
+            document.getElementById(target).classList.add('active-main');
+
+            // Khi chuyển tab, active lại sub-tab đầu tiên của tab đó
+            const mainContent = document.getElementById(target);
+            const firstSubTab = mainContent.querySelector('.sub-tab-btn');
+            if (firstSubTab) {
+                firstSubTab.click();
+            }
+        });
+    });
+
+    // Sub tabs
+    document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.sub;
+
+            const parentMain = this.closest('.main-tab-content');
+            if (!parentMain) return;
+
+            parentMain.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            parentMain.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active-sub'));
+            document.getElementById(target).classList.add('active-sub');
+        });
+    });
+
+    // ================================================================
+    //  INITIALIZE ALL GRIDS
+    // ================================================================
+
+    function initGrids() {
+        renderVocabCards('test1NounGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'noun'));
+        renderVocabCards('test1VerbGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'verb'));
+        renderVocabCards('test1AdjGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'adj'));
+
+        renderVocabCards('test2NounGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'noun'));
+        renderVocabCards('test2VerbGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'verb'));
+        renderVocabCards('test2AdjGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'adj'));
+    }
+
+    initGrids();
+
+    console.log('✅ Unit 4: Education đã sẵn sàng! Tổng cộng ' + vocabularyData.length + ' từ vựng.');
+</script>
+
+</body>
+</html>
