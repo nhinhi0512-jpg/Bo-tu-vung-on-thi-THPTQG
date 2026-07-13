@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3: Environment - Từ vựng THPTQG | Cô Quỳnh Nhi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 20px 16px 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: #f1f5f9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+        }
+
+        .home-btn:hover {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            transform: scale(0.97);
+        }
+
+        .home-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .header-title {
+            color: #f1f5f9;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .header-title span {
+            color: #fcd34d;
+        }
+
+        .header-badge {
+            background: #fbbf24;
+            color: #0f172a;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        /* ===== MAIN TABS ===== */
+        .main-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .main-tab-btn {
+            padding: 14px 32px;
+            border: 2px solid rgba(251, 191, 36, 0.2);
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-tab-btn:hover {
+            color: #e2e8f0;
+            border-color: rgba(251, 191, 36, 0.4);
+        }
+
+        .main-tab-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.25);
+        }
+
+        .main-tab-btn .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        .main-tab-btn.active .badge-count {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .main-tab-content {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+
+        .main-tab-content.active-main {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== SUB TABS ===== */
+        .sub-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .sub-tab-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sub-tab-btn:hover {
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sub-tab-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2);
+        }
+
+        .sub-tab-btn .icon {
+            font-size: 1.1rem;
+        }
+
+        .sub-tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .sub-tab-content.active-sub {
+            display: block;
+        }
+
+        /* ===== VOCAB CARD ===== */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                border-radius: 28px;
+                padding: 12px 16px;
+            }
+            .main-tab-btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+            .sub-tab-btn {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+        }
+
+        .vocab-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px 22px 22px;
+            box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border-left: 5px solid #22c55e;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .vocab-card .word-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .vocab-card .word {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .vocab-card .level {
+            font-size: 0.6rem;
+            background: #f1f5f9;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: 0.5px;
+        }
+
+        .vocab-card .ipa {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .vocab-card .meaning {
+            color: #1e293b;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 8px;
+            padding: 8px 14px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .vocab-card .example {
+            color: #475569;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            border-left: 3px solid #94a3b8;
+            line-height: 1.5;
+        }
+
+        .vocab-card .example::before {
+            content: "📌 ";
+            font-style: normal;
+        }
+
+        .vocab-card .collocations {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fef3c7;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #92400e;
+            line-height: 1.6;
+        }
+
+        .vocab-card .collocations::before {
+            content: "🔗 Collocations: ";
+            font-weight: 700;
+        }
+
+        .vocab-card .word-family {
+            margin-top: 8px;
+            padding: 10px 14px;
+            background: #e0f2fe;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            color: #0369a1;
+            line-height: 1.7;
+        }
+
+        .vocab-card .word-family::before {
+            content: "📚 Word family: ";
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .vocab-card .word-family .wf-item {
+            display: block;
+            padding: 2px 0;
+        }
+
+        .vocab-card .word-family .wf-item .wf-word {
+            font-weight: 600;
+            color: #0c4a6e;
+        }
+
+        .vocab-card .word-family .wf-item .wf-example {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .vocab-card .pos-tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pos-tag.noun { background: #dbeafe; color: #1d4ed8; }
+        .pos-tag.verb { background: #d1fae5; color: #059669; }
+        .pos-tag.adj { background: #fce7f3; color: #be185d; }
+        .pos-tag.phrase { background: #e0e7ff; color: #4338ca; }
+        .pos-tag.adv { background: #fef08a; color: #854d0e; }
+
+        .empty-msg {
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .text-center { text-align: center; }
+        .mt-20 { margin-top: 20px; }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../index.html" class="home-btn">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Trang chủ
+            </a>
+            <div class="header-title">
+                🌿 Unit 3: <span>Environment</span>
+            </div>
+        </div>
+        <div class="header-badge">
+            🌍 40 từ vựng B1–C2
+        </div>
+    </header>
+
+    <!-- ===== MAIN TABS ===== -->
+    <div class="main-tabs">
+        <button class="main-tab-btn active" data-main="main-test1">
+            📘 TEST 01 <span class="badge-count">20 từ</span>
+        </button>
+        <button class="main-tab-btn" data-main="main-test2">
+            📗 TEST 02 <span class="badge-count">20 từ</span>
+        </button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 01 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test1" class="main-tab-content active-main">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test1-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">10</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">4</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">6</span>
+            </button>
+        </div>
+
+        <div id="test1-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test1NounGrid"></div></div>
+        <div id="test1-verbs" class="sub-tab-content"><div class="vocab-grid" id="test1VerbGrid"></div></div>
+        <div id="test1-adj" class="sub-tab-content"><div class="vocab-grid" id="test1AdjGrid"></div></div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 02 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test2" class="main-tab-content">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test2-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">9</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">5</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">6</span>
+            </button>
+        </div>
+
+        <div id="test2-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test2NounGrid"></div></div>
+        <div id="test2-verbs" class="sub-tab-content"><div class="vocab-grid" id="test2VerbGrid"></div></div>
+        <div id="test2-adj" class="sub-tab-content"><div class="vocab-grid" id="test2AdjGrid"></div></div>
+    </div>
+
+    <footer>
+        Hệ thống từ vựng chuyên sâu luyện thi THPTQG | Lớp Tiếng Anh cô Nhi<br>
+        🌱 Học từ vựng theo chủ đề Environment - B1 đến C2
+    </footer>
+</div>
+
+<script>
+    // ================================================================
+    //  DATA: UNIT 3: ENVIRONMENT - TEST 01 & TEST 02
+    // ================================================================
+    const vocabularyData = [
+        // ===================== TEST 01 =====================
+        // ---- NOUNS (10) ----
+        { word: "sustainability", ipa: "/səˌsteɪ.nəˈbɪl.ə.ti/", meaning: "sự bền vững", level: "B2", pos: "noun", test: "test1",
+          example: "The company is committed to environmental sustainability in all its operations.",
+          collocations: "environmental sustainability, economic sustainability, long-term sustainability",
+          wordFamily: "sustain (v): The soil in this region can sustain a wide variety of crops.<br>sustainable (adj): We need to find more sustainable sources of energy.<br>sustainably (adv): The wood was sustainably harvested from managed forests." },
+
+        { word: "consumption", ipa: "/kənˈsʌmp.ʃən/", meaning: "sự tiêu thụ", level: "B2", pos: "noun", test: "test1",
+          example: "Reducing our daily energy consumption is one of the easiest ways to help the planet.",
+          collocations: "energy consumption, water consumption, fuel consumption",
+          wordFamily: "consume (v): Modern cars consume less fuel than older models.<br>consumer (n): Many consumers are now choosing eco-friendly products." },
+
+        { word: "emission", ipa: "/iˈmɪʃ.ən/", meaning: "khí thải, sự phát thải", level: "B2", pos: "noun", test: "test1",
+          example: "The government has set new targets to cut carbon emissions.",
+          collocations: "carbon emissions, greenhouse gas emissions, reduce emissions",
+          wordFamily: "emit (v): Factories along the river emit toxic chemicals into the water.<br>emitter (n): The country is one of the world's largest carbon emitters." },
+
+        { word: "disposal", ipa: "/dɪˈspoʊ.zəl/", meaning: "sự vứt bỏ, sự thải bỏ", level: "B2", pos: "noun", test: "test1",
+          example: "The improper disposal of plastic waste has caused severe ocean pollution.",
+          collocations: "waste disposal, garbage disposal, disposal of hazardous materials",
+          wordFamily: "dispose (v): People should dispose of their trash in designated bins.<br>disposable (adj): Many restaurants are replacing disposable plastic cups with glass ones." },
+
+        { word: "degradation", ipa: "/ˌdeɡ.rəˈdeɪ.ʃən/", meaning: "sự suy thoái", level: "C1", pos: "noun", test: "test1",
+          example: "Environmental degradation is a serious threat to biodiversity and human health.",
+          collocations: "environmental degradation, land degradation, soil degradation",
+          wordFamily: "degrade (v): The excessive use of chemicals has degraded the quality of the soil." },
+
+        { word: "conservation", ipa: "/ˌkɒn.səˈveɪ.ʃən/", meaning: "sự bảo tồn", level: "B2", pos: "noun", test: "test1",
+          example: "The national park was established for the conservation of endangered species.",
+          collocations: "wildlife conservation, energy conservation, nature conservation",
+          wordFamily: "conserve (v): We must conserve water during the dry season." },
+
+        { word: "pollution", ipa: "/pəˈluː.ʃən/", meaning: "sự ô nhiễm", level: "B1", pos: "noun", test: "test1",
+          example: "Air pollution in major cities has become a serious health concern.",
+          collocations: "air pollution, water pollution, plastic pollution, noise pollution",
+          wordFamily: "pollute (v): Chemical waste has polluted the local river.<br>pollutant (n): Nitrogen oxides are dangerous pollutants.<br>polluted (adj): Swimming in polluted water can cause serious illnesses." },
+
+        { word: "ecosystem", ipa: "/ˈiː.kəʊˌsɪs.təm/", meaning: "hệ sinh thái", level: "B2", pos: "noun", test: "test1",
+          example: "The entire ecosystem was damaged by the oil spill.",
+          collocations: "marine ecosystem, fragile ecosystem, natural ecosystem",
+          wordFamily: "" },
+
+        { word: "awareness", ipa: "/əˈweə.nəs/", meaning: "sự nhận thức", level: "B2", pos: "noun", test: "test1",
+          example: "Public awareness of environmental issues has increased dramatically.",
+          collocations: "raise awareness, environmental awareness, public awareness",
+          wordFamily: "aware (adj): People are becoming more aware of the importance of recycling.<br>unaware (adj): Many people are unaware of the dangers of plastic pollution." },
+
+        { word: "footprint", ipa: "/ˈfʊt.prɪnt/", meaning: "dấu chân, tác động (môi trường)", level: "B2", pos: "noun", test: "test1",
+          example: "I'm trying to reduce my carbon footprint by using public transport.",
+          collocations: "carbon footprint, environmental footprint",
+          wordFamily: "" },
+
+        // ---- VERBS (4) ----
+        { word: "contaminate", ipa: "/kənˈtæm.ɪ.neɪt/", meaning: "làm nhiễm bẩn, làm ô nhiễm", level: "C1", pos: "verb", test: "test1",
+          example: "Drinking water has been contaminated by agricultural runoff.",
+          collocations: "contaminate water, contaminate food, contaminate soil",
+          wordFamily: "contamination (n): The contamination of the river caused a public health crisis.<br>contaminant (n): Various contaminants were found in the water sample." },
+
+        { word: "enhance", ipa: "/ɪnˈhɑːns/", meaning: "nâng cao, cải thiện", level: "B2", pos: "verb", test: "test1",
+          example: "Urban green spaces enhance the quality of life for city residents.",
+          collocations: "enhance quality, enhance performance, enhance appeal",
+          wordFamily: "enhancement (n): The enhancement of public parks has benefited the community." },
+
+        { word: "mitigate", ipa: "/ˈmɪt.ɪ.ɡeɪt/", meaning: "giảm nhẹ, làm dịu bớt", level: "C1", pos: "verb", test: "test1",
+          example: "Planting more trees can help mitigate the effects of climate change.",
+          collocations: "mitigate the impact, mitigate the effects, mitigate risks",
+          wordFamily: "mitigation (n): The mitigation of environmental damage requires immediate action." },
+
+        { word: "foster", ipa: "/ˈfɒs.tər/", meaning: "nuôi dưỡng, thúc đẩy, khuyến khích", level: "B2", pos: "verb", test: "test1",
+          example: "Community gardens help foster a sense of belonging among neighbors.",
+          collocations: "foster relationships, foster development, foster connections",
+          wordFamily: "" },
+
+        // ---- ADJECTIVES (6) ----
+        { word: "biodegradable", ipa: "/ˌbaɪ.əʊ.dɪˈɡreɪ.də.bəl/", meaning: "có thể phân hủy sinh học", level: "B2", pos: "adj", test: "test1",
+          example: "We should choose biodegradable packaging to reduce landfill waste.",
+          collocations: "biodegradable materials, biodegradable waste",
+          wordFamily: "biodegrade (v): These bags will naturally biodegrade within a few months." },
+
+        { word: "renewable", ipa: "/rɪˈnjuː.ə.bəl/", meaning: "có thể tái tạo", level: "B2", pos: "adj", test: "test1",
+          example: "Solar and wind power are examples of renewable energy sources.",
+          collocations: "renewable energy, renewable resources",
+          wordFamily: "renew (v): We need to renew our commitment to protecting the environment.<br>renewal (n): The renewal of the contract depends on the company's environmental record." },
+
+        { word: "toxic", ipa: "/ˈtɒk.sɪk/", meaning: "độc hại", level: "B2", pos: "adj", test: "test1",
+          example: "The factory was fined for releasing toxic chemicals into the river.",
+          collocations: "toxic waste, toxic chemicals, toxic fumes",
+          wordFamily: "toxicity (n): The toxicity of the substance was confirmed by laboratory tests." },
+
+        { word: "ecological", ipa: "/ˌiː.kəˈlɒdʒ.ɪ.kəl/", meaning: "thuộc về sinh thái", level: "B2", pos: "adj", test: "test1",
+          example: "The destruction of forests has serious ecological consequences.",
+          collocations: "ecological balance, ecological footprint",
+          wordFamily: "ecology (n): She is studying marine ecology at university.<br>ecologically (adv): The project was ecologically unsound." },
+
+        { word: "organic", ipa: "/ɔːˈɡæn.ɪk/", meaning: "hữu cơ, thuộc về sinh vật", level: "B2", pos: "adj", test: "test1",
+          example: "She always buys organic vegetables because they are healthier.",
+          collocations: "organic food, organic farming, organic waste",
+          wordFamily: "" },
+
+        { word: "excessive", ipa: "/ɪkˈses.ɪv/", meaning: "quá mức", level: "C1", pos: "adj", test: "test1",
+          example: "Excessive use of plastic bags is destroying our oceans.",
+          collocations: "excessive consumption, excessive waste, excessive use",
+          wordFamily: "excess (n): An excess of fertilizer can harm the soil.<br>excessively (adv): People excessively rely on single-use plastics." },
+
+        // ===================== TEST 02 =====================
+        // ---- NOUNS (9) ----
+        { word: "deforestation", ipa: "/ˌdiː.fɒr.ɪˈsteɪ.ʃən/", meaning: "sự phá rừng", level: "B2", pos: "noun", test: "test2",
+          example: "Deforestation in the Amazon has accelerated dramatically over the past decade.",
+          collocations: "widespread deforestation, illegal deforestation, deforestation rate",
+          wordFamily: "deforest (v): The government has pledged to stop deforesting the national park.<br>deforested (adj): Large areas of land have been left deforested and barren." },
+
+        { word: "biodiversity", ipa: "/ˌbaɪ.əʊ.daɪˈvɜː.sə.ti/", meaning: "đa dạng sinh học", level: "B2", pos: "noun", test: "test2",
+          example: "The tropical rainforest is home to incredible biodiversity.",
+          collocations: "rich biodiversity, marine biodiversity, loss of biodiversity",
+          wordFamily: "" },
+
+        { word: "reforestation", ipa: "/ˌriː.fɒr.ɪˈsteɪ.ʃən/", meaning: "sự trồng rừng lại, tái trồng rừng", level: "B2", pos: "noun", test: "test2",
+          example: "Reforestation projects have been launched to restore damaged forest areas.",
+          collocations: "reforestation project, reforestation effort, large-scale reforestation",
+          wordFamily: "reforest (v): The organization aims to reforest thousands of hectares of land.<br>reforested (adj): The reforested area is now thriving with new trees." },
+
+        { word: "runoff", ipa: "/ˈrʌn.ɒf/", meaning: "nước chảy tràn (bề mặt)", level: "C1", pos: "noun", test: "test2",
+          example: "Urban areas often have problems with stormwater runoff and flooding.",
+          collocations: "water runoff, surface runoff, agricultural runoff",
+          wordFamily: "" },
+
+        { word: "erosion", ipa: "/ɪˈrəʊ.ʒən/", meaning: "sự xói mòn", level: "B2", pos: "noun", test: "test2",
+          example: "Planting trees along riverbanks helps prevent soil erosion.",
+          collocations: "soil erosion, coastal erosion, prevent erosion",
+          wordFamily: "erode (v): The shoreline has been slowly eroded by the waves over the years." },
+
+        { word: "logging", ipa: "/ˈlɒɡ.ɪŋ/", meaning: "hoạt động khai thác gỗ", level: "B2", pos: "noun", test: "test2",
+          example: "Illegal logging has devastated large areas of the rainforest.",
+          collocations: "illegal logging, logging industry, logging activity",
+          wordFamily: "" },
+
+        { word: "extinction", ipa: "/ɪkˈstɪŋk.ʃən/", meaning: "sự tuyệt chủng", level: "B2", pos: "noun", test: "test2",
+          example: "Many species are facing extinction due to habitat loss and climate change.",
+          collocations: "verge of extinction, mass extinction, face extinction",
+          wordFamily: "extinct (adj): Dinosaurs became extinct millions of years ago." },
+
+        { word: "habitat", ipa: "/ˈhæb.ɪ.tæt/", meaning: "môi trường sống, sinh cảnh", level: "B2", pos: "noun", test: "test2",
+          example: "Deforestation is destroying the natural habitats of countless species.",
+          collocations: "natural habitat, loss of habitat, marine habitat",
+          wordFamily: "" },
+
+        { word: "campaign", ipa: "/kæmˈpeɪn/", meaning: "chiến dịch", level: "B2", pos: "noun", test: "test2",
+          example: "The 'Fridays for Future' campaign has inspired millions of young people.",
+          collocations: "climate campaign, awareness campaign, launch a campaign",
+          wordFamily: "campaigner (n): Environmental campaigners are urging the government to take action." },
+
+        // ---- VERBS (5) ----
+        { word: "deforest", ipa: "/ˌdiːˈfɒr.ɪst/", meaning: "phá rừng", level: "B2", pos: "verb", test: "test2",
+          example: "The government has pledged to stop deforesting the national park.",
+          collocations: "",
+          wordFamily: "deforestation (n): Deforestation in the Amazon has accelerated dramatically." },
+
+        { word: "reforest", ipa: "/ˌriːˈfɒr.ɪst/", meaning: "trồng rừng lại", level: "B2", pos: "verb", test: "test2",
+          example: "The organization aims to reforest thousands of hectares of land.",
+          collocations: "",
+          wordFamily: "reforestation (n): Reforestation projects have been launched." },
+
+        { word: "moderate", ipa: "/ˈmɒd.ər.eɪt/", meaning: "điều hòa, làm dịu bớt", level: "B2", pos: "verb", test: "test2",
+          example: "Forests moderate local temperatures by providing shade and releasing moisture.",
+          collocations: "moderate climate, moderate temperature",
+          wordFamily: "moderation (n): In environmental terms, moderation in resource use is crucial." },
+
+        { word: "endanger", ipa: "/ɪnˈdeɪn.dʒər/", meaning: "gây nguy hiểm, đe dọa", level: "B2", pos: "verb", test: "test2",
+          example: "Pollution is endangering the survival of many marine animals.",
+          collocations: "",
+          wordFamily: "endangered (adj): The giant panda is listed as an endangered species.<br>danger (n): Many species are in danger of extinction." },
+
+        { word: "integrate", ipa: "/ˈɪn.tɪ.ɡreɪt/", meaning: "tích hợp, hòa nhập", level: "B2", pos: "verb", test: "test2",
+          example: "Schools are trying to integrate environmental education into their curriculum.",
+          collocations: "integrate into, integrate with",
+          wordFamily: "integration (n): The integration of green spaces into urban planning is becoming more common.<br>integrated (adj): The new project offers an integrated approach to sustainable development." },
+
+        // ---- ADJECTIVES (6) ----
+        { word: "urban", ipa: "/ˈɜː.bən/", meaning: "thuộc đô thị, thành phố", level: "B1", pos: "adj", test: "test2",
+          example: "Urban gardening is a growing trend in crowded cities around the world.",
+          collocations: "urban area, urban development, urban planning",
+          wordFamily: "urbanization (n): Rapid urbanization has led to the loss of many natural habitats.<br>urbanize (v): The region has been heavily urbanized in the last few decades." },
+
+        { word: "innovative", ipa: "/ˈɪn.ə.və.tɪv/", meaning: "có tính đổi mới, sáng tạo", level: "B2", pos: "adj", test: "test2",
+          example: "Urban gardening is an innovative solution to bring nature back into cities.",
+          collocations: "innovative approach, innovative solution, innovative technology",
+          wordFamily: "innovate (v): The company continues to innovate in the field of renewable energy.<br>innovation (n): Technological innovation plays a key role in fighting climate change." },
+
+        { word: "aesthetic", ipa: "/iːsˈθet.ɪk/", meaning: "thẩm mỹ", level: "B2", pos: "adj", test: "test2",
+          example: "Green spaces not only improve air quality but also add aesthetic value to the city.",
+          collocations: "aesthetic appeal, aesthetic value, aesthetic quality",
+          wordFamily: "aesthetically (adv): The park was aesthetically designed to blend with the surrounding landscape." },
+
+        { word: "communal", ipa: "/ˈkɒm.jə.nəl/", meaning: "thuộc về cộng đồng, dùng chung", level: "B2", pos: "adj", test: "test2",
+          example: "Communal gardens provide a space for neighbors to gather and work together.",
+          collocations: "communal area, communal space, communal garden",
+          wordFamily: "community (n): The local community came together to clean up the park." },
+
+        { word: "endangered", ipa: "/ɪnˈdeɪn.dʒəd/", meaning: "có nguy cơ tuyệt chủng", level: "B2", pos: "adj", test: "test2",
+          example: "The giant panda is listed as an endangered species.",
+          collocations: "endangered species, endangered animals, critically endangered",
+          wordFamily: "endanger (v): Pollution is endangering the survival of many marine animals.<br>danger (n): Many species are in danger of extinction." },
+
+        { word: "extinct", ipa: "/ɪkˈstɪŋkt/", meaning: "tuyệt chủng", level: "B2", pos: "adj", test: "test2",
+          example: "Dinosaurs became extinct millions of years ago.",
+          collocations: "become extinct, go extinct",
+          wordFamily: "extinction (n): Many species are facing extinction due to habitat loss." }
+    ];
+
+    // ================================================================
+    //  RENDER FUNCTIONS
+    // ================================================================
+
+    function renderVocabCards(containerId, data) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        if (data.length === 0) {
+            container.innerHTML = `<div class="empty-msg">📭 Chưa có từ vựng nào trong mục này.</div>`;
+            return;
+        }
+
+        let html = '';
+        data.forEach(item => {
+            const posClass = item.pos === 'noun' ? 'noun' : item.pos === 'verb' ? 'verb' : item.pos === 'adj' ? 'adj' : 'phrase';
+            const posLabel = item.pos === 'noun' ? 'Danh từ' : item.pos === 'verb' ? 'Động từ' : item.pos === 'adj' ? 'Tính từ' : 'Cụm từ';
+
+            let wfHtml = '';
+            if (item.wordFamily) {
+                const parts = item.wordFamily.split('<br>');
+                parts.forEach(part => {
+                    if (part.trim()) {
+                        wfHtml += `<span class="wf-item">${part}</span>`;
+                    }
+                });
+            }
+
+            html += `
+                <div class="vocab-card">
+                    <div class="word-row">
+                        <div class="word">${item.word} <span class="level">${item.level}</span></div>
+                        <span class="pos-tag ${posClass}">${posLabel}</span>
+                    </div>
+                    <div class="ipa">${item.ipa}</div>
+                    <div class="meaning">${item.meaning}</div>
+                    <div class="example">${item.example}</div>
+                    ${item.collocations ? `<div class="collocations">${item.collocations}</div>` : ''}
+                    ${item.wordFamily ? `<div class="word-family">${wfHtml}</div>` : ''}
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    // ================================================================
+    //  TAB SWITCHING
+    // ================================================================
+
+    // Main tabs
+    document.querySelectorAll('.main-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.main;
+
+            document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            document.querySelectorAll('.main-tab-content').forEach(c => c.classList.remove('active-main'));
+            document.getElementById(target).classList.add('active-main');
+
+            // Khi chuyển tab, active lại sub-tab đầu tiên của tab đó
+            const mainContent = document.getElementById(target);
+            const firstSubTab = mainContent.querySelector('.sub-tab-btn');
+            if (firstSubTab) {
+                firstSubTab.click();
+            }
+        });
+    });
+
+    // Sub tabs
+    document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.sub;
+
+            const parentMain = this.closest('.main-tab-content');
+            if (!parentMain) return;
+
+            parentMain.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            parentMain.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active-sub'));
+            document.getElementById(target).classList.add('active-sub');
+        });
+    });
+
+    // ================================================================
+    //  INITIALIZE ALL GRIDS
+    // ================================================================
+
+    function initGrids() {
+        renderVocabCards('test1NounGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'noun'));
+        renderVocabCards('test1VerbGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'verb'));
+        renderVocabCards('test1AdjGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'adj'));
+
+        renderVocabCards('test2NounGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'noun'));
+        renderVocabCards('test2VerbGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'verb'));
+        renderVocabCards('test2AdjGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'adj'));
+    }
+
+    initGrids();
+
+    console.log('✅ Unit 3: Environment đã sẵn sàng! Tổng cộng ' + vocabularyData.length + ' từ vựng.');
+</script>
+
+</body>
+</html>
