@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5: Culture - Từ vựng THPTQG | Cô Quỳnh Nhi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 20px 16px 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: #f1f5f9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+        }
+
+        .home-btn:hover {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            transform: scale(0.97);
+        }
+
+        .home-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .header-title {
+            color: #f1f5f9;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .header-title span {
+            color: #fcd34d;
+        }
+
+        .header-badge {
+            background: #fbbf24;
+            color: #0f172a;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        /* ===== MAIN TABS ===== */
+        .main-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .main-tab-btn {
+            padding: 14px 32px;
+            border: 2px solid rgba(251, 191, 36, 0.2);
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-tab-btn:hover {
+            color: #e2e8f0;
+            border-color: rgba(251, 191, 36, 0.4);
+        }
+
+        .main-tab-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.25);
+        }
+
+        .main-tab-btn .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        .main-tab-btn.active .badge-count {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .main-tab-content {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+
+        .main-tab-content.active-main {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== SUB TABS ===== */
+        .sub-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .sub-tab-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sub-tab-btn:hover {
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sub-tab-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2);
+        }
+
+        .sub-tab-btn .icon {
+            font-size: 1.1rem;
+        }
+
+        .sub-tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .sub-tab-content.active-sub {
+            display: block;
+        }
+
+        /* ===== VOCAB CARD ===== */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                border-radius: 28px;
+                padding: 12px 16px;
+            }
+            .main-tab-btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+            .sub-tab-btn {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+        }
+
+        .vocab-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px 22px 22px;
+            box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border-left: 5px solid #8b5cf6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .vocab-card .word-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .vocab-card .word {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .vocab-card .level {
+            font-size: 0.6rem;
+            background: #f1f5f9;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: 0.5px;
+        }
+
+        .vocab-card .ipa {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .vocab-card .meaning {
+            color: #1e293b;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 8px;
+            padding: 8px 14px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .vocab-card .example {
+            color: #475569;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            border-left: 3px solid #94a3b8;
+            line-height: 1.5;
+        }
+
+        .vocab-card .example::before {
+            content: "📌 ";
+            font-style: normal;
+        }
+
+        .vocab-card .collocations {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fef3c7;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #92400e;
+            line-height: 1.6;
+        }
+
+        .vocab-card .collocations::before {
+            content: "🔗 Collocations: ";
+            font-weight: 700;
+        }
+
+        .vocab-card .word-family {
+            margin-top: 8px;
+            padding: 10px 14px;
+            background: #e0f2fe;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            color: #0369a1;
+            line-height: 1.7;
+        }
+
+        .vocab-card .word-family::before {
+            content: "📚 Word family: ";
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .vocab-card .word-family .wf-item {
+            display: block;
+            padding: 2px 0;
+        }
+
+        .vocab-card .word-family .wf-item .wf-word {
+            font-weight: 600;
+            color: #0c4a6e;
+        }
+
+        .vocab-card .word-family .wf-item .wf-example {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .vocab-card .pos-tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pos-tag.noun { background: #dbeafe; color: #1d4ed8; }
+        .pos-tag.verb { background: #d1fae5; color: #059669; }
+        .pos-tag.adj { background: #fce7f3; color: #be185d; }
+        .pos-tag.phrase { background: #e0e7ff; color: #4338ca; }
+        .pos-tag.adv { background: #fef08a; color: #854d0e; }
+
+        .empty-msg {
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .text-center { text-align: center; }
+        .mt-20 { margin-top: 20px; }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../index.html" class="home-btn">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Trang chủ
+            </a>
+            <div class="header-title">
+                🌏 Unit 5: <span>Culture</span>
+            </div>
+        </div>
+        <div class="header-badge">
+            🎭 46 từ vựng B1–C2
+        </div>
+    </header>
+
+    <!-- ===== MAIN TABS ===== -->
+    <div class="main-tabs">
+        <button class="main-tab-btn active" data-main="main-test1">
+            📘 TEST 01 <span class="badge-count">24 từ</span>
+        </button>
+        <button class="main-tab-btn" data-main="main-test2">
+            📗 TEST 02 <span class="badge-count">22 từ</span>
+        </button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 01 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test1" class="main-tab-content active-main">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test1-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">14</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">5</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">3</span>
+            </button>
+        </div>
+
+        <div id="test1-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test1NounGrid"></div></div>
+        <div id="test1-verbs" class="sub-tab-content"><div class="vocab-grid" id="test1VerbGrid"></div></div>
+        <div id="test1-adj" class="sub-tab-content"><div class="vocab-grid" id="test1AdjGrid"></div></div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 02 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test2" class="main-tab-content">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test2-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">10</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">2</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">1</span>
+            </button>
+        </div>
+
+        <div id="test2-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test2NounGrid"></div></div>
+        <div id="test2-verbs" class="sub-tab-content"><div class="vocab-grid" id="test2VerbGrid"></div></div>
+        <div id="test2-adj" class="sub-tab-content"><div class="vocab-grid" id="test2AdjGrid"></div></div>
+    </div>
+
+    <footer>
+        Hệ thống từ vựng chuyên sâu luyện thi THPTQG | Ms.Nhi's English Class<br>
+    </footer>
+</div>
+
+<script>
+    // ================================================================
+    //  DATA: UNIT 5: CULTURE - TEST 01 & TEST 02
+    // ================================================================
+    const vocabularyData = [
+        // ===================== TEST 01 =====================
+        // ---- NOUNS (15) ----
+        { word: "heritage", ipa: "/ˈher.ɪ.tɪdʒ/", meaning: "di sản", level: "B2", pos: "noun", test: "test1",
+          example: "The World Culture Festival is a celebration of humanity's rich heritage.",
+          collocations: "cultural heritage, rich heritage, national heritage",
+          wordFamily: "hereditary (adj): The title is hereditary, passed from father to son." },
+
+        { word: "diversity", ipa: "/daɪˈvɜː.sə.ti/", meaning: "sự đa dạng", level: "B2", pos: "noun", test: "test1",
+          example: "In the UK, there are more than 300 different languages spoken in London alone, showing great cultural diversity.",
+          collocations: "cultural diversity, rich diversity, diverse community",
+          wordFamily: "diverse (adj): The city has a diverse population.<br>diversify (v): The company is trying to diversify its workforce." },
+
+        { word: "custom", ipa: "/ˈkʌs.təm/", meaning: "phong tục, tập quán", level: "B2", pos: "noun", test: "test1",
+          example: "People moving to new countries often face different customs and behaviors that surprise them.",
+          collocations: "traditional customs, local custom, custom of doing something",
+          wordFamily: "customary (adj): It is customary to shake hands when meeting someone." },
+
+        { word: "distinction", ipa: "/dɪˈstɪŋk.ʃən/", meaning: "sự khác biệt, sự phân biệt", level: "C1", pos: "noun", test: "test1",
+          example: "It's important to accept that culture has distinctions, and what is normal in one place may feel strange in another.",
+          collocations: "clear distinction, cultural distinction, make a distinction",
+          wordFamily: "distinct (adj): The two languages are quite distinct from each other.<br>distinctive (adj): She has a very distinctive voice." },
+
+        { word: "open-mindedness", ipa: "/ˌəʊ.pənˈmaɪn.dɪd.nəs/", meaning: "sự cởi mở, sự sẵn sàng tiếp thu", level: "C1", pos: "noun", test: "test1",
+          example: "Respect and open-mindedness are key to building good relationships with others in a new place.",
+          collocations: "show open-mindedness, encourage open-mindedness",
+          wordFamily: "open-minded (adj): He is very open-minded and willing to listen to new ideas.<br>narrow-minded (adj) (trái nghĩa): Some people are too narrow-minded to accept change." },
+
+        { word: "globalization", ipa: "/ˌɡləʊ.bə.laɪˈzeɪ.ʃən/", meaning: "toàn cầu hóa", level: "B2", pos: "noun", test: "test1",
+          example: "In today's interconnected world, globalization has brought many changes to our daily lives.",
+          collocations: "process of globalization, impact of globalization",
+          wordFamily: "global (adj): Climate change is a global issue.<br>globalize (v): The economy has become increasingly globalized." },
+
+        { word: "cultural identity", ipa: "/ˈkʌl.tʃər.əl aɪˈden.tə.ti/", meaning: "bản sắc văn hóa", level: "B2", pos: "noun", test: "test1",
+          example: "This cultural shift can lead to a weakening of national identity and a sense of disconnection from one's heritage.",
+          collocations: "preserve cultural identity, strong cultural identity, sense of cultural identity",
+          wordFamily: "cultural (adj): The museum has a large collection of cultural artifacts.<br>identify (v): Many young people identify strongly with their cultural roots." },
+
+        { word: "global community", ipa: "/ˈɡləʊ.bəl kəˈmjuː.nə.ti/", meaning: "cộng đồng toàn cầu", level: "B2", pos: "noun", test: "test1",
+          example: "We are all part of a global community, and we should learn from one another.",
+          collocations: "global community, international community, sense of community",
+          wordFamily: "" },
+
+        { word: "acceptance", ipa: "/əkˈsept.əns/", meaning: "sự chấp nhận", level: "B2", pos: "noun", test: "test1",
+          example: "Mutual acceptance between different cultures is essential for peace.",
+          collocations: "acceptance of an offer, acceptance letter, gain acceptance",
+          wordFamily: "accept (v): I accept your terms.<br>acceptable (adj): The price is acceptable.<br>accepted (adj): It is widely accepted that cultural exchange brings benefits." },
+
+        { word: "integration", ipa: "/ˌɪn.tɪˈɡreɪ.ʃən/", meaning: "sự hòa nhập, sự tích hợp", level: "C1", pos: "noun", test: "test1",
+          example: "The integration of different cultures in the classroom helps students learn from each other.",
+          collocations: "cultural integration, social integration, integrate into",
+          wordFamily: "integrate (v): Schools should integrate cultural studies into their curricula.<br>integrated (adj): The new policy provides an integrated approach to cultural diversity." },
+
+        { word: "belonging", ipa: "/bɪˈlɒŋ.ɪŋ/", meaning: "cảm giác thuộc về", level: "B2", pos: "noun", test: "test1",
+          example: "Celebrating festivals with intention helps remind everyone of their shared history and belonging.",
+          collocations: "sense of belonging, feeling of belonging",
+          wordFamily: "belong (v): This book belongs to me.<br>belongings (n): Please take all your belongings with you." },
+
+        { word: "identity", ipa: "/aɪˈden.tə.ti/", meaning: "bản sắc, nhận dạng", level: "B2", pos: "noun", test: "test1",
+          example: "Education plays a crucial role in preserving cultural identity.",
+          collocations: "national identity, cultural identity, sense of identity",
+          wordFamily: "identify (v): The witness was able to identify the suspect.<br>identification (n): The identification of the body took several days." },
+
+        { word: "preservation", ipa: "/ˌprez.əˈveɪ.ʃən/", meaning: "sự bảo tồn, sự gìn giữ", level: "C1", pos: "noun", test: "test1",
+          example: "Schools and families can help with the preservation of cultural identity.",
+          collocations: "cultural preservation, preservation of heritage, historical preservation",
+          wordFamily: "preserve (v): We must preserve our cultural traditions.<br>preservative (n): The product contains preservatives." },
+
+        { word: "revival", ipa: "/rɪˈvaɪ.vəl/", meaning: "sự hồi sinh, sự phục hưng", level: "C1", pos: "noun", test: "test1",
+          example: "Social media has played a major role in this cultural revival.",
+          collocations: "cultural revival, economic revival, revival of interest",
+          wordFamily: "revive (v): The organization is trying to revive traditional crafts." },
+
+        // ---- VERBS (5) ----
+        { word: "integrate", ipa: "/ˈɪn.tɪ.ɡreɪt/", meaning: "hòa nhập, tích hợp", level: "C1", pos: "verb", test: "test1",
+          example: "Schools can integrate cultural studies into their curricula.",
+          collocations: "integrate into society, integrate with",
+          wordFamily: "integration (n): The integration of new immigrants into society is crucial.<br>integrated (adj): The school offers an integrated curriculum." },
+
+        { word: "preserve", ipa: "/prɪˈzɜːv/", meaning: "bảo tồn, gìn giữ", level: "B2", pos: "verb", test: "test1",
+          example: "Globalization also offers opportunities to preserve and promote cultural traditions.",
+          collocations: "preserve culture, preserve heritage, preserve tradition",
+          wordFamily: "preservation (n): The preservation of cultural sites is important." },
+
+        { word: "embrace", ipa: "/ɪmˈbreɪs/", meaning: "chấp nhận, đón nhận (một cách nhiệt tình)", level: "C1", pos: "verb", test: "test1",
+          example: "Young people are also embracing other aspects of their cultural heritage.",
+          collocations: "embrace change, embrace diversity, embrace new ideas",
+          wordFamily: "embracement (n): The embracement of new technology is essential for growth." },
+
+        { word: "adapt", ipa: "/əˈdæpt/", meaning: "thích nghi, điều chỉnh cho phù hợp", level: "B2", pos: "verb", test: "test1",
+          example: "Communities should find ways to adapt to modern life without losing the true meaning of each festival.",
+          collocations: "adapt to something, adapt from, adapt for",
+          wordFamily: "adaptation (n): The film is an adaptation of the novel.<br>adaptable (adj): Children are usually more adaptable than adults." },
+
+        { word: "adjust", ipa: "/əˈdʒʌst/", meaning: "điều chỉnh, thích nghi", level: "B2", pos: "verb", test: "test1",
+          example: "Traditional celebrations have been adjusted to fit busy lifestyles.",
+          collocations: "adjust to something, adjust oneself, make adjustments",
+          wordFamily: "adjustment (n): We need to make some adjustments to our schedule.<br>adjustable (adj): The chair has an adjustable back." },
+
+        // ---- ADJECTIVES (4) ----
+        { word: "diverse", ipa: "/daɪˈvɜːs/", meaning: "đa dạng", level: "B2", pos: "adj", test: "test1",
+          example: "Visitors had the chance to appreciate part of a diverse world.",
+          collocations: "diverse culture, diverse community, diverse range",
+          wordFamily: "diversity (n): The school celebrates cultural diversity." },
+
+        { word: "mutual", ipa: "/ˈmjuː.tʃu.əl/", meaning: "lẫn nhau, qua lại", level: "B2", pos: "adj", test: "test1",
+          example: "We have a chance to build a future of peace and mutual respect.",
+          collocations: "mutual respect, mutual understanding, mutual benefit",
+          wordFamily: "mutually (adv): The two ideas are not mutually exclusive." },
+
+        { word: "relevant", ipa: "/ˈrel.ə.vənt/", meaning: "có liên quan, phù hợp", level: "B2", pos: "adj", test: "test1",
+          example: "This revival shows that traditional arts can evolve and remain relevant.",
+          collocations: "relevant to something, remain relevant, highly relevant",
+          wordFamily: "relevance (n): The relevance of the topic to modern life is clear.<br>irrelevant (adj) (trái nghĩa): The information is irrelevant to the discussion." },
+
+        // ===================== TEST 02 =====================
+        // ---- NOUNS (13) ----
+        { word: "cuisine", ipa: "/kwɪˈziːn/", meaning: "ẩm thực, cách nấu ăn", level: "B2", pos: "noun", test: "test2",
+          example: "This brings many benefits, such as learning new ideas, enjoying various foods, and respecting different ways of life.",
+          collocations: "French cuisine, traditional cuisine, local cuisine",
+          wordFamily: "culinary (adj): The city is famous for its culinary delights." },
+
+        { word: "spectator", ipa: "/spekˈteɪ.tər/", meaning: "khán giả, người xem (tại sự kiện)", level: "B2", pos: "noun", test: "test2",
+          example: "Additionally, students are not just spectators; they actively participate in these events.",
+          collocations: "mere spectator, passive spectator, spectator sport",
+          wordFamily: "spectate (v): Thousands of people came to spectate the event." },
+
+        { word: "revival", ipa: "/rɪˈvaɪ.vəl/", meaning: "sự hồi sinh, sự phục hưng", level: "C1", pos: "noun", test: "test2",
+          example: "In recent years, there has been a noticeable rise in young people in Vietnam taking an interest in traditional arts.",
+          collocations: "cultural revival, economic revival, revival of interest",
+          wordFamily: "revive (v): They are trying to revive traditional crafts." },
+
+        { word: "curiosity", ipa: "/ˌkjʊə.riˈɒs.ə.ti/", meaning: "sự tò mò, tính ham hiểu biết", level: "B2", pos: "noun", test: "test2",
+          example: "Much of this success stemmed from students' curiosity and openness.",
+          collocations: "curiosity about something, natural curiosity, satisfy one's curiosity",
+          wordFamily: "curious (adj): I was curious about other cultures.<br>curiously (adv): She looked at him curiously." },
+
+        { word: "popularity", ipa: "/ˌpɒp.jəˈlær.ə.ti/", meaning: "sự phổ biến, tính được yêu thích", level: "B2", pos: "noun", test: "test2",
+          example: "In recent years, festivals like Christmas, Lunar New Year, and Holi have gained in popularity across countries and cultures.",
+          collocations: "gain popularity, growing popularity, widespread popularity",
+          wordFamily: "popular (adj): This song is very popular among young people.<br>popularize (v): The show helped popularize traditional music." },
+
+        { word: "scale", ipa: "/skeɪl/", meaning: "quy mô, phạm vi", level: "B2", pos: "noun", test: "test2",
+          example: "Traditional celebrations have been adjusted to fit busy lifestyles, sometimes held on a smaller scale.",
+          collocations: "on a large scale, on a small scale, global scale",
+          wordFamily: "" },
+
+        { word: "interaction", ipa: "/ˌɪn.təˈræk.ʃən/", meaning: "sự tương tác, sự tác động qua lại", level: "B2", pos: "noun", test: "test2",
+          example: "Students explored world cultures through food fairs, storytelling, and music performances in a truly interactive classroom experience.",
+          collocations: "social interaction, cultural interaction, human interaction",
+          wordFamily: "interact (v): The teacher encouraged students to interact with each other.<br>interactive (adj): The museum offers interactive exhibits." },
+
+        { word: "intention", ipa: "/ɪnˈten.ʃən/", meaning: "ý định, mục đích", level: "B2", pos: "noun", test: "test2",
+          example: "Celebrating festivals with intention helps remind everyone of their shared history and belonging.",
+          collocations: "with good intention, intention to do something, without intention",
+          wordFamily: "intend (v): I intend to learn more about this culture.<br>intentional (adj): The damage was intentional." },
+
+        { word: "awareness", ipa: "/əˈweə.nəs/", meaning: "sự nhận thức", level: "B2", pos: "noun", test: "test2",
+          example: "Schools can help with the preservation of cultural identity by teaching young generations the roots of these events.",
+          collocations: "raise awareness, cultural awareness, public awareness",
+          wordFamily: "aware (adj): We should be aware of other cultures' customs.<br>unaware (adj): Many people are unaware of the importance of cultural preservation." },
+
+        { word: "workshop", ipa: "/ˈwɜːk.ʃɒp/", meaning: "hội thảo, buổi thực hành", level: "B2", pos: "noun", test: "test2",
+          example: "In Hanoi, for example, students have organized performances and workshops to introduce and celebrate xăm singing.",
+          collocations: "organize a workshop, attend a workshop, music workshop",
+          wordFamily: "" },
+
+        // ---- VERBS (5) ----
+        { word: "interact", ipa: "/ˌɪn.təˈrækt/", meaning: "tương tác, tác động qua lại", level: "B2", pos: "verb", test: "test2",
+          example: "Teachers should encourage students to interact with each other across cultures.",
+          collocations: "interact with, social interaction",
+          wordFamily: "interaction (n): Positive interaction between cultures is important.<br>interactive (adj): The game is highly interactive." },
+
+        { word: "pass on", ipa: "/pɑːs ɒn/", meaning: "truyền lại, truyền thụ", level: "B2", pos: "verb", test: "test2",
+          example: "These efforts show that the younger generation is deeply interested in passing it on.",
+          collocations: "pass on traditions, pass on knowledge, pass on to the next generation",
+          wordFamily: "" },
+
+        // ---- ADJECTIVES (4) ----
+        { word: "interactive", ipa: "/ˌɪn.təˈræk.tɪv/", meaning: "tương tác, có sự tác động qua lại", level: "B2", pos: "adj", test: "test2",
+          example: "Students explored world cultures through an interactive classroom experience.",
+          collocations: "interactive learning, interactive experience, interactive activity",
+          wordFamily: "interact (v): The teacher encouraged students to interact with each other.<br>interaction (n): Positive interaction between cultures is important." },
+    ];
+
+    // ================================================================
+    //  RENDER FUNCTIONS
+    // ================================================================
+
+    function renderVocabCards(containerId, data) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        if (data.length === 0) {
+            container.innerHTML = `<div class="empty-msg">📭 Chưa có từ vựng nào trong mục này.</div>`;
+            return;
+        }
+
+        let html = '';
+        data.forEach(item => {
+            const posClass = item.pos === 'noun' ? 'noun' : item.pos === 'verb' ? 'verb' : item.pos === 'adj' ? 'adj' : 'phrase';
+            const posLabel = item.pos === 'noun' ? 'Danh từ' : item.pos === 'verb' ? 'Động từ' : item.pos === 'adj' ? 'Tính từ' : 'Cụm từ';
+
+            let wfHtml = '';
+            if (item.wordFamily) {
+                const parts = item.wordFamily.split('<br>');
+                parts.forEach(part => {
+                    if (part.trim()) {
+                        wfHtml += `<span class="wf-item">${part}</span>`;
+                    }
+                });
+            }
+
+            html += `
+                <div class="vocab-card">
+                    <div class="word-row">
+                        <div class="word">${item.word} <span class="level">${item.level}</span></div>
+                        <span class="pos-tag ${posClass}">${posLabel}</span>
+                    </div>
+                    <div class="ipa">${item.ipa}</div>
+                    <div class="meaning">${item.meaning}</div>
+                    <div class="example">${item.example}</div>
+                    ${item.collocations ? `<div class="collocations">${item.collocations}</div>` : ''}
+                    ${item.wordFamily ? `<div class="word-family">${wfHtml}</div>` : ''}
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    // ================================================================
+    //  TAB SWITCHING
+    // ================================================================
+
+    // Main tabs
+    document.querySelectorAll('.main-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.main;
+
+            document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            document.querySelectorAll('.main-tab-content').forEach(c => c.classList.remove('active-main'));
+            document.getElementById(target).classList.add('active-main');
+
+            // Khi chuyển tab, active lại sub-tab đầu tiên của tab đó
+            const mainContent = document.getElementById(target);
+            const firstSubTab = mainContent.querySelector('.sub-tab-btn');
+            if (firstSubTab) {
+                firstSubTab.click();
+            }
+        });
+    });
+
+    // Sub tabs
+    document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.sub;
+
+            const parentMain = this.closest('.main-tab-content');
+            if (!parentMain) return;
+
+            parentMain.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            parentMain.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active-sub'));
+            document.getElementById(target).classList.add('active-sub');
+        });
+    });
+
+    // ================================================================
+    //  INITIALIZE ALL GRIDS
+    // ================================================================
+
+    function initGrids() {
+        renderVocabCards('test1NounGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'noun'));
+        renderVocabCards('test1VerbGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'verb'));
+        renderVocabCards('test1AdjGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'adj'));
+
+        renderVocabCards('test2NounGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'noun'));
+        renderVocabCards('test2VerbGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'verb'));
+        renderVocabCards('test2AdjGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'adj'));
+    }
+
+    initGrids();
+
+    console.log('✅ Unit 5: Culture đã sẵn sàng! Tổng cộng ' + vocabularyData.length + ' từ vựng.');
+</script>
+
+</body>
+</html>
