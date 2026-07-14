@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6: Artificial Intelligence - Từ vựng THPTQG | Cô Quỳnh Nhi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 20px 16px 50px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .home-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: #f1f5f9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+        }
+
+        .home-btn:hover {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            transform: scale(0.97);
+        }
+
+        .home-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .header-title {
+            color: #f1f5f9;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .header-title span {
+            color: #fcd34d;
+        }
+
+        .header-badge {
+            background: #fbbf24;
+            color: #0f172a;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        /* ===== MAIN TABS ===== */
+        .main-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .main-tab-btn {
+            padding: 14px 32px;
+            border: 2px solid rgba(251, 191, 36, 0.2);
+            border-radius: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #94a3b8;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-tab-btn:hover {
+            color: #e2e8f0;
+            border-color: rgba(251, 191, 36, 0.4);
+        }
+
+        .main-tab-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.25);
+        }
+
+        .main-tab-btn .badge-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        .main-tab-btn.active .badge-count {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .main-tab-content {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+
+        .main-tab-content.active-main {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== SUB TABS ===== */
+        .sub-tabs {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .sub-tab-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sub-tab-btn:hover {
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sub-tab-btn.active {
+            background: #fbbf24;
+            color: #0f172a;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2);
+        }
+
+        .sub-tab-btn .icon {
+            font-size: 1.1rem;
+        }
+
+        .sub-tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .sub-tab-content.active-sub {
+            display: block;
+        }
+
+        /* ===== VOCAB CARD ===== */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                border-radius: 28px;
+                padding: 12px 16px;
+            }
+            .main-tab-btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+            .sub-tab-btn {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+        }
+
+        .vocab-card {
+            background: white;
+            border-radius: 24px;
+            padding: 20px 22px 22px;
+            box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border-left: 5px solid #06b6d4;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .vocab-card .word-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .vocab-card .word {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .vocab-card .level {
+            font-size: 0.6rem;
+            background: #f1f5f9;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #475569;
+            letter-spacing: 0.5px;
+        }
+
+        .vocab-card .ipa {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .vocab-card .meaning {
+            color: #1e293b;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 8px;
+            padding: 8px 14px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .vocab-card .example {
+            color: #475569;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            border-left: 3px solid #94a3b8;
+            line-height: 1.5;
+        }
+
+        .vocab-card .example::before {
+            content: "📌 ";
+            font-style: normal;
+        }
+
+        .vocab-card .collocations {
+            margin-top: 10px;
+            padding: 10px 14px;
+            background: #fef3c7;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #92400e;
+            line-height: 1.6;
+        }
+
+        .vocab-card .collocations::before {
+            content: "🔗 Collocations: ";
+            font-weight: 700;
+        }
+
+        .vocab-card .word-family {
+            margin-top: 8px;
+            padding: 10px 14px;
+            background: #e0f2fe;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            color: #0369a1;
+            line-height: 1.7;
+        }
+
+        .vocab-card .word-family::before {
+            content: "📚 Word family: ";
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .vocab-card .word-family .wf-item {
+            display: block;
+            padding: 2px 0;
+        }
+
+        .vocab-card .word-family .wf-item .wf-word {
+            font-weight: 600;
+            color: #0c4a6e;
+        }
+
+        .vocab-card .word-family .wf-item .wf-example {
+            color: #475569;
+            font-style: italic;
+        }
+
+        .vocab-card .pos-tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pos-tag.noun { background: #dbeafe; color: #1d4ed8; }
+        .pos-tag.verb { background: #d1fae5; color: #059669; }
+        .pos-tag.adj { background: #fce7f3; color: #be185d; }
+        .pos-tag.phrase { background: #e0e7ff; color: #4338ca; }
+        .pos-tag.adv { background: #fef08a; color: #854d0e; }
+
+        .empty-msg {
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .text-center { text-align: center; }
+        .mt-20 { margin-top: 20px; }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #334155;
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../index.html" class="home-btn">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Trang chủ
+            </a>
+            <div class="header-title">
+                🤖 Unit 6: <span>Artificial Intelligence</span>
+            </div>
+        </div>
+        <div class="header-badge">
+            🧠 37 từ vựng B1–C2
+        </div>
+    </header>
+
+    <!-- ===== MAIN TABS ===== -->
+    <div class="main-tabs">
+        <button class="main-tab-btn active" data-main="main-test1">
+            📘 TEST 01 <span class="badge-count">16 từ</span>
+        </button>
+        <button class="main-tab-btn" data-main="main-test2">
+            📗 TEST 02 <span class="badge-count">21 từ</span>
+        </button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 01 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test1" class="main-tab-content active-main">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test1-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">9</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">3</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test1-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">4</span>
+            </button>
+        </div>
+
+        <div id="test1-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test1NounGrid"></div></div>
+        <div id="test1-verbs" class="sub-tab-content"><div class="vocab-grid" id="test1VerbGrid"></div></div>
+        <div id="test1-adj" class="sub-tab-content"><div class="vocab-grid" id="test1AdjGrid"></div></div>
+        <div id="test1-phrase" class="sub-tab-content"><div class="vocab-grid" id="test1PhraseGrid"></div></div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ===== MAIN TAB: TEST 02 ===== -->
+    <!-- ========================================================= -->
+    <div id="main-test2" class="main-tab-content">
+
+        <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-sub="test2-nouns">
+                <span class="icon">🏷️</span> Danh từ <span class="badge-count">12</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-verbs">
+                <span class="icon">⚡</span> Động từ <span class="badge-count">5</span>
+            </button>
+            <button class="sub-tab-btn" data-sub="test2-adj">
+                <span class="icon">🎨</span> Tính từ <span class="badge-count">4</span>
+            </button>
+        </div>
+
+        <div id="test2-nouns" class="sub-tab-content active-sub"><div class="vocab-grid" id="test2NounGrid"></div></div>
+        <div id="test2-verbs" class="sub-tab-content"><div class="vocab-grid" id="test2VerbGrid"></div></div>
+        <div id="test2-adj" class="sub-tab-content"><div class="vocab-grid" id="test2AdjGrid"></div></div>
+    </div>
+
+    <footer>
+        Hệ thống từ vựng chuyên sâu luyện thi THPTQG | Ms.Nhi's English Class<br>
+    </footer>
+</div>
+
+<script>
+    // ================================================================
+    //  DATA: UNIT 6: ARTIFICIAL INTELLIGENCE - TEST 01 & TEST 02
+    // ================================================================
+    const vocabularyData = [
+        // ===================== TEST 01 =====================
+        // ---- NOUNS (10) ----
+        { word: "automation", ipa: "/ˌɔː.təˈmeɪ.ʃən/", meaning: "sự tự động hóa", level: "B2", pos: "noun", test: "test1",
+          example: "This change is primarily due to automation, which is transforming industries.",
+          collocations: "process automation, factory automation, full automation",
+          wordFamily: "automate (v): The factory has automated many of its processes.<br>automated (adj): The system is fully automated." },
+
+        { word: "accuracy", ipa: "/ˈæk.jə.rə.si/", meaning: "độ chính xác", level: "B2", pos: "noun", test: "test1",
+          example: "AI tools have helped detect diseases with some tools reaching 90% accuracy.",
+          collocations: "high accuracy, diagnostic accuracy, improve accuracy",
+          wordFamily: "accurate (adj): The information is accurate.<br>accurately (adv): The machine measures accurately." },
+
+        { word: "bias", ipa: "/ˈbaɪ.əs/", meaning: "sự thiên vị, sự thành kiến", level: "C1", pos: "noun", test: "test1",
+          example: "AI used for hiring has been shown to have biases, leading to unfair treatment.",
+          collocations: "racial bias, gender bias, avoid bias",
+          wordFamily: "biased (adj): The judge was accused of being biased.<br>unbiased (adj): We need an unbiased opinion." },
+
+        { word: "oversight", ipa: "/ˈəʊ.və.saɪt/", meaning: "sự giám sát, sự quản lý", level: "C1", pos: "noun", test: "test1",
+          example: "This law includes rules for human oversight and making sure people understand AI decisions.",
+          collocations: "human oversight, government oversight, provide oversight",
+          wordFamily: "oversee (v): The manager oversees all operations." },
+
+        { word: "consequence", ipa: "/ˈkɒn.sɪ.kwəns/", meaning: "hậu quả, kết quả", level: "B2", pos: "noun", test: "test1",
+          example: "Developers need to understand the consequences of their work.",
+          collocations: "serious consequences, unintended consequences, face the consequences",
+          wordFamily: "consequent (adj): The consequent changes affected everyone.<br>consequently (adv): He didn't study; consequently, he failed." },
+
+        { word: "responsibility", ipa: "/rɪˌspɒn.sɪˈbɪl.ə.ti/", meaning: "trách nhiệm", level: "B2", pos: "noun", test: "test1",
+          example: "People also need to take responsibility for AI and ensure systems work fairly.",
+          collocations: "take responsibility, sense of responsibility, shared responsibility",
+          wordFamily: "responsible (adj): He is responsible for the project.<br>irresponsible (adj) (trái nghĩa): It was irresponsible to ignore the rules." },
+
+        { word: "routine", ipa: "/ruːˈtiːn/", meaning: "thói quen, công việc thường ngày", level: "B2", pos: "noun", test: "test1",
+          example: "AI has become part of everyday routines.",
+          collocations: "daily routine, routine task, part of a routine",
+          wordFamily: "routine (adj): It's a routine check-up." },
+
+        { word: "healthcare", ipa: "/ˈhelθ.keər/", meaning: "chăm sóc sức khỏe", level: "B2", pos: "noun", test: "test1",
+          example: "One of the most exciting uses of AI is in healthcare, where it helps doctors treat patients better.",
+          collocations: "healthcare system, healthcare professionals, healthcare industry",
+          wordFamily: "" },
+
+        { word: "ethics", ipa: "/ˈeθ.ɪks/", meaning: "đạo đức học, các nguyên tắc đạo đức", level: "C1", pos: "noun", test: "test1",
+          example: "As AI becomes a bigger part of our lives, questions about its ethics are becoming more important.",
+          collocations: "AI ethics, medical ethics, ethical standards",
+          wordFamily: "ethical (adj): We need ethical guidelines for AI.<br>ethically (adv): The company behaves ethically." },
+
+        // ---- VERBS (4) ----
+        { word: "automate", ipa: "/ˈɔː.tə.meɪt/", meaning: "tự động hóa", level: "B2", pos: "verb", test: "test1",
+          example: "This change is primarily due to automation, which is transforming industries.",
+          collocations: "automate a process, fully automated",
+          wordFamily: "automation (n): Automation is replacing many manual jobs.<br>automated (adj): The factory uses an automated assembly line." },
+
+        { word: "detect", ipa: "/dɪˈtekt/", meaning: "phát hiện, nhận ra", level: "B2", pos: "verb", test: "test1",
+          example: "AI systems have helped detect diseases like cancer early.",
+          collocations: "detect a disease, detect early signs, detect a problem",
+          wordFamily: "detection (n): Early detection is key to successful treatment.<br>detective (n): He works as a private detective." },
+
+        { word: "transform", ipa: "/trænsˈfɔːm/", meaning: "biến đổi, thay đổi hoàn toàn", level: "B2", pos: "verb", test: "test1",
+          example: "Automation is transforming industries and workflows.",
+          collocations: "transform an industry, transform lives",
+          wordFamily: "transformation (n): The transformation of the economy is remarkable.<br>transformative (adj): Technology has a transformative effect." },
+
+        // ---- ADJECTIVES (4) ----
+        { word: "obsolete", ipa: "/ˈɒb.sə.liːt/", meaning: "lỗi thời, không còn được sử dụng", level: "C1", pos: "adj", test: "test1",
+          example: "Certain roles become obsolete, while others like AI engineers will rise in demand.",
+          collocations: "become obsolete, obsolete technology, obsolete equipment",
+          wordFamily: "obsolescence (n): The obsolescence of old machinery is inevitable." },
+
+        { word: "accountable", ipa: "/əˈkaʊn.tə.bəl/", meaning: "chịu trách nhiệm, có trách nhiệm giải trình", level: "C1", pos: "adj", test: "test1",
+          example: "One big issue is who should be held accountable when AI causes harm.",
+          collocations: "hold someone accountable, be accountable for something",
+          wordFamily: "accountability (n): The company has a strong culture of accountability." },
+
+        { word: "transparent", ipa: "/trænsˈpær.ənt/", meaning: "minh bạch, rõ ràng", level: "C1", pos: "adj", test: "test1",
+          example: "We need to be transparent about how AI makes decisions.",
+          collocations: "transparent process, transparent decision-making, transparent system",
+          wordFamily: "transparency (n): Transparency builds trust with the public.<br>transparently (adv): The company operates transparently." },
+
+        { word: "ethical", ipa: "/ˈeθ.ɪ.kəl/", meaning: "có đạo đức, hợp đạo lý", level: "C1", pos: "adj", test: "test1",
+          example: "We need to ensure AI systems work ethically.",
+          collocations: "ethical issues, ethical standards, ethical considerations",
+          wordFamily: "ethic (n): Medical ethics is an important field.<br>ethics (n): She studies ethics at university." },
+
+        // ===================== TEST 02 =====================
+        // ---- NOUNS (12) ----
+        { word: "creativity", ipa: "/ˌkriː.eɪˈtɪv.ə.ti/", meaning: "sự sáng tạo, tính sáng tạo", level: "B2", pos: "noun", test: "test2",
+          example: "Experts discussed how AI can boost creativity in classrooms.",
+          collocations: "boost creativity, creative thinking, creative process",
+          wordFamily: "creative (adj): She is a very creative artist.<br>creatively (adv): He solved the problem creatively.<br>create (v): The artist creates beautiful paintings." },
+
+        { word: "overreliance", ipa: "/ˌəʊ.və.rɪˈlaɪ.əns/", meaning: "sự phụ thuộc quá mức", level: "C1", pos: "noun", test: "test2",
+          example: "Overreliance on AI may cause students to stop thinking for themselves.",
+          collocations: "overreliance on technology, overreliance on something",
+          wordFamily: "rely (v): Many people rely on AI for daily tasks.<br>reliance (n): The reliance on technology is increasing.<br>reliant (adj): We are too reliant on machines." },
+
+        { word: "engagement", ipa: "/ɪnˈɡeɪdʒ.mənt/", meaning: "sự tham gia, sự tương tác", level: "B2", pos: "noun", test: "test2",
+          example: "AI can boost engagement in class, making learning more personal and dynamic.",
+          collocations: "student engagement, boost engagement, active engagement",
+          wordFamily: "engage (v): The teacher tries to engage all students.<br>engaged (adj): The students are engaged in group work.<br>engaging (adj): The lesson was very engaging." },
+
+        { word: "dependence", ipa: "/dɪˈpen.dəns/", meaning: "sự phụ thuộc", level: "B2", pos: "noun", test: "test2",
+          example: "Reduce dependence on AI by encouraging real practice and group work.",
+          collocations: "dependence on something, reduce dependence, drug dependence",
+          wordFamily: "depend (v): Success depends on many factors.<br>dependent (adj): Children are dependent on their parents.<br>independently (adv) (trái nghĩa): Students should think independently." },
+
+        { word: "authenticity", ipa: "/ˌɔː.θenˈtɪs.ə.ti/", meaning: "tính xác thực, tính chân thật", level: "C1", pos: "noun", test: "test2",
+          example: "The depth and authenticity of human artistic expression remain unparalleled.",
+          collocations: "sense of authenticity, cultural authenticity, question the authenticity",
+          wordFamily: "authentic (adj): This is an authentic painting.<br>authentically (adv): The restaurant serves authentically Vietnamese food." },
+
+        { word: "empathy", ipa: "/ˈem.pə.θi/", meaning: "sự đồng cảm, sự thấu hiểu", level: "C1", pos: "noun", test: "test2",
+          example: "AI can simulate empathy through language, but it does not actually feel anything.",
+          collocations: "feel empathy, show empathy, lack empathy",
+          wordFamily: "empathetic (adj): She is an empathetic listener.<br>empathize (v): He can empathize with his students' struggles." },
+
+        { word: "consciousness", ipa: "/ˈkɒn.ʃəs.nəs/", meaning: "ý thức, sự tỉnh táo", level: "C1", pos: "noun", test: "test2",
+          example: "AI lacks consciousness and emotional awareness, making it incapable of truly original thought.",
+          collocations: "human consciousness, lose consciousness, regain consciousness",
+          wordFamily: "conscious (adj): He was conscious of his mistake.<br>unconsciously (adv): She unconsciously tapped her foot." },
+
+        { word: "simulation", ipa: "/ˌsɪm.jəˈleɪ.ʃən/", meaning: "sự mô phỏng", level: "C1", pos: "noun", test: "test2",
+          example: "AI responses are based on simulation of human empathy.",
+          collocations: "computer simulation, simulation technology, flight simulation",
+          wordFamily: "simulate (v): The machine simulates human behavior.<br>simulator (n): The driving simulator helps students practice." },
+
+        { word: "integration", ipa: "/ˌɪn.tɪˈɡreɪ.ʃən/", meaning: "sự tích hợp, sự hòa nhập", level: "C1", pos: "noun", test: "test2",
+          example: "As AI becomes more integrated into our lives, people wonder if machines can experience emotions.",
+          collocations: "AI integration, social integration, cultural integration",
+          wordFamily: "integrate (v): AI is becoming integrated into daily life.<br>integrated (adj): The school offers an integrated curriculum." },
+
+        { word: "collaboration", ipa: "/kəˌlæb.əˈreɪ.ʃən/", meaning: "sự hợp tác, sự cộng tác", level: "B2", pos: "noun", test: "test2",
+          example: "AI should be viewed as a collaborator rather than a replacement.",
+          collocations: "international collaboration, collaborative project, teamwork",
+          wordFamily: "collaborate (v): The two companies collaborated on the project.<br>collaborative (adj): The team had a collaborative approach." },
+
+        { word: "advancement", ipa: "/ədˈvɑːns.mənt/", meaning: "sự tiến bộ, sự phát triển", level: "B2", pos: "noun", test: "test2",
+          example: "The advancement of AI has been remarkable.",
+          collocations: "technological advancement, career advancement, scientific advancement",
+          wordFamily: "advance (v): Technology continues to advance rapidly.<br>advanced (adj): We use advanced technology." },
+
+        { word: "emotion", ipa: "/ɪˈməʊ.ʃən/", meaning: "cảm xúc", level: "B2", pos: "noun", test: "test2",
+          example: "AI cannot experience emotions like humans do.",
+          collocations: "human emotion, express emotion, emotional response",
+          wordFamily: "emotional (adj): She is very emotional.<br>emotionally (adv): He was emotionally affected." },
+
+        // ---- VERBS (5) ----
+        { word: "brainstorm", ipa: "/ˈbreɪn.stɔːm/", meaning: "động não, cùng nhau nghĩ ra ý tưởng", level: "B2", pos: "verb", test: "test2",
+          example: "AI tools help students brainstorm ideas.",
+          collocations: "brainstorm ideas, brainstorming session",
+          wordFamily: "brainstorming (n): The team had a brainstorming session." },
+
+        { word: "equip", ipa: "/ɪˈkwɪp/", meaning: "trang bị, cung cấp", level: "B2", pos: "verb", test: "test2",
+          example: "AI can equip learners with problem-solving skills.",
+          collocations: "equip someone with something, well-equipped",
+          wordFamily: "equipment (n): The laboratory has modern equipment.<br>equipped (adj): The students are well-equipped with digital skills." },
+
+        { word: "mimic", ipa: "/ˈmɪm.ɪk/", meaning: "bắt chước, mô phỏng", level: "C1", pos: "verb", test: "test2",
+          example: "AI can mimic certain aspects of creativity, but lacks true understanding.",
+          collocations: "mimic behavior, mimic emotions",
+          wordFamily: "mimicry (n): The bird's mimicry is impressive." },
+
+        { word: "simulate", ipa: "/ˈsɪm.jə.leɪt/", meaning: "mô phỏng, giả lập", level: "C1", pos: "verb", test: "test2",
+          example: "AI can simulate emotional responses, but it does not actually feel anything.",
+          collocations: "simulate a situation, simulate an emotion, simulate reality",
+          wordFamily: "simulation (n): Flight simulators use simulation technology.<br>simulator (n): The driving simulator helps students practice." },
+
+        { word: "generate", ipa: "/ˈdʒen.ə.reɪt/", meaning: "tạo ra, sản sinh", level: "B2", pos: "verb", test: "test2",
+          example: "AI systems analyze data to identify patterns and generate new content.",
+          collocations: "generate ideas, generate content, generate interest",
+          wordFamily: "generation (n): The generation of new ideas is important.<br>generator (n): The generator provides electricity." },
+
+        // ---- ADJECTIVES (4) ----
+        { word: "dynamic", ipa: "/daɪˈnæm.ɪk/", meaning: "năng động, luôn thay đổi", level: "B2", pos: "adj", test: "test2",
+          example: "AI can make learning more personal, dynamic, and creative.",
+          collocations: "dynamic environment, dynamic approach, dynamic interaction",
+          wordFamily: "dynamism (n): The dynamism of the new teacher inspired the students." },
+
+        { word: "advanced", ipa: "/ədˈvɑːnst/", meaning: "tiên tiến, cao cấp", level: "B2", pos: "adj", test: "test2",
+          example: "As AI becomes more advanced, it may develop new capabilities.",
+          collocations: "advanced technology, advanced level, advanced features",
+          wordFamily: "advance (v): Technology continues to advance rapidly.<br>advancement (n): The advancement of AI has been remarkable." },
+
+        { word: "unprecedented", ipa: "/ʌnˈpres.ɪ.den.tɪd/", meaning: "chưa từng có, không có tiền lệ", level: "C1", pos: "adj", test: "test2",
+          example: "The advancement of AI represents unprecedented technological progress.",
+          collocations: "unprecedented level, unprecedented growth, unprecedented opportunity",
+          wordFamily: "precedent (n): The court's decision set a new precedent." },
+
+        { word: "unparalleled", ipa: "/ʌnˈpær.ə.leld/", meaning: "không có gì sánh bằng, vô song", level: "C1", pos: "adj", test: "test2",
+          example: "The depth and authenticity of human creativity remain unparalleled.",
+          collocations: "unparalleled beauty, unparalleled success, unparalleled opportunity",
+          wordFamily: "parallel (n): There are many parallels between the two situations." }
+    ];
+
+    // ================================================================
+    //  RENDER FUNCTIONS
+    // ================================================================
+
+    function renderVocabCards(containerId, data) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+
+        if (data.length === 0) {
+            container.innerHTML = `<div class="empty-msg">📭 Chưa có từ vựng nào trong mục này.</div>`;
+            return;
+        }
+
+        let html = '';
+        data.forEach(item => {
+            const posClass = item.pos === 'noun' ? 'noun' : item.pos === 'verb' ? 'verb' : item.pos === 'adj' ? 'adj' : 'phrase';
+            const posLabel = item.pos === 'noun' ? 'Danh từ' : item.pos === 'verb' ? 'Động từ' : item.pos === 'adj' ? 'Tính từ' : 'Cụm từ';
+
+            let wfHtml = '';
+            if (item.wordFamily) {
+                const parts = item.wordFamily.split('<br>');
+                parts.forEach(part => {
+                    if (part.trim()) {
+                        wfHtml += `<span class="wf-item">${part}</span>`;
+                    }
+                });
+            }
+
+            html += `
+                <div class="vocab-card">
+                    <div class="word-row">
+                        <div class="word">${item.word} <span class="level">${item.level}</span></div>
+                        <span class="pos-tag ${posClass}">${posLabel}</span>
+                    </div>
+                    <div class="ipa">${item.ipa}</div>
+                    <div class="meaning">${item.meaning}</div>
+                    <div class="example">${item.example}</div>
+                    ${item.collocations ? `<div class="collocations">${item.collocations}</div>` : ''}
+                    ${item.wordFamily ? `<div class="word-family">${wfHtml}</div>` : ''}
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
+    // ================================================================
+    //  TAB SWITCHING
+    // ================================================================
+
+    // Main tabs
+    document.querySelectorAll('.main-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.main;
+
+            document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            document.querySelectorAll('.main-tab-content').forEach(c => c.classList.remove('active-main'));
+            document.getElementById(target).classList.add('active-main');
+
+            // Khi chuyển tab, active lại sub-tab đầu tiên của tab đó
+            const mainContent = document.getElementById(target);
+            const firstSubTab = mainContent.querySelector('.sub-tab-btn');
+            if (firstSubTab) {
+                firstSubTab.click();
+            }
+        });
+    });
+
+    // Sub tabs
+    document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const target = this.dataset.sub;
+
+            const parentMain = this.closest('.main-tab-content');
+            if (!parentMain) return;
+
+            parentMain.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            parentMain.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active-sub'));
+            document.getElementById(target).classList.add('active-sub');
+        });
+    });
+
+    // ================================================================
+    //  INITIALIZE ALL GRIDS
+    // ================================================================
+
+    function initGrids() {
+        renderVocabCards('test1NounGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'noun'));
+        renderVocabCards('test1VerbGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'verb'));
+        renderVocabCards('test1AdjGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'adj'));
+        renderVocabCards('test1PhraseGrid', vocabularyData.filter(w => w.test === 'test1' && w.pos === 'phrase'));
+
+        renderVocabCards('test2NounGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'noun'));
+        renderVocabCards('test2VerbGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'verb'));
+        renderVocabCards('test2AdjGrid', vocabularyData.filter(w => w.test === 'test2' && w.pos === 'adj'));
+    }
+
+    initGrids();
+
+    console.log('✅ Unit 6: Artificial Intelligence đã sẵn sàng! Tổng cộng ' + vocabularyData.length + ' từ vựng.');
+</script>
+
+</body>
+</html>
